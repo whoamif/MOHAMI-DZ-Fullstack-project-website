@@ -30,9 +30,7 @@ function App() {
         </div>
         </div>
         
-        <div className='bg-orange-300 w-screen h-1/5 p-0'>
-
-        </div>
+       <Footer></Footer>
         
       </div> 
 
