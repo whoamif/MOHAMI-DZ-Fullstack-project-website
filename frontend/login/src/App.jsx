@@ -39,7 +39,7 @@ const App = () => {
     <div className='flex flex-col w-screen m-auto h-screen font-quicksand overflow-x-hidden'>
       <div className='flex w-screen'>
         <div  className='flex flex-col p-16 w-1/2 gap-5'>
-        <img className='w-60' src="./elements/DZ-Mouhami.svg" alt="" />
+        <img  className='w-60 ' src="./elements/DZ-Mouhami.svg" alt="" />
         <div className='flex flex-col gap-5 ml-12'>
           <p className='font-bold text-3xl mt-4'>Login</p>
           <input
