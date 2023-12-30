@@ -1,0 +1,88 @@
+# Assuming you have a MySQL connection and cursor already created
+alter_table_query = """
+ALTER TABLE Lawyers
+ADD COLUMN bio TEXT NULL;
+"""
+
+cursor.execute(alter_table_query)
+connection.commit()
+
+
+
+
+# Replace the following with your CREATE TABLE queries
+create_table_users = """
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NULL,
+    password VARCHAR(255) NULL,
+    adr VARCHAR(100) NULL, 
+    profile_pic VARCHAR(100) NULL,
+    Phn_number VARCHAR(50) NULL 
+    -- Add other user-related fields as needed
+);"""
+
+
+create_table_lawyers ="""
+CREATE TABLE Lawyers (
+    lawyer_id INT PRIMARY KEY AUTO_INCREMENT,
+    lawyername VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NULL,
+    password VARCHAR(255) NULL,
+    adr VARCHAR(100) NULL, 
+    profile_pic VARCHAR(100) NULL,
+    Phn_number VARCHAR(50) NULL ,
+    domains TEXT NULL,
+    price VARCHAR(50) NULL,
+    license_num VARCHAR(10) NULL,
+    schedule VARCHAR(200) NULL,
+    edu_bg VARCHAR(100) NULL,
+    Year_exp INT NULL
+);"""
+
+
+create_table_rating = """
+CREATE TABLE Rating (
+    rating_id INT PRIMARY KEY AUTO_INCREMENT,
+    val INT,
+    lawyer_id INT NOT NULL,
+    FOREIGN KEY (lawyer_id) REFERENCES Lawyers(lawyer_id) 
+    -- Add other rating-related fields as needed
+);
+"""
+
+create_table_comments ="""
+CREATE TABLE Comments ( 
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    content VARCHAR(200) NULL,
+    lawyer_id INT NOT NULL,
+    FOREIGN KEY (lawyer_id) REFERENCES Lawyers(lawyer_id)
+    -- Add other comment-related fields as needed
+);"""
+
+
+create_table_rendezvous = """
+CREATE TABLE Rendezvous (
+    rendezvous_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(30) NULL,
+    Rv_content VARCHAR(200) NULL,
+    lawyer_id INT NOT NULL,
+    FOREIGN KEY (lawyer_id) REFERENCES Lawyers(lawyer_id),
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    -- Add other rendezvous-related fields as needed
+);"""
+
+
+# Execute the CREATE TABLE queries
+cursor.execute(create_table_users)
+cursor.execute(create_table_lawyers)
+cursor.execute(create_table_rating)
+cursor.execute(create_table_comments)
+cursor.execute(create_table_rendezvous)
+
+# Commit changes and close the cursor and connection
+connection.commit()
+cursor.close()
+connection.close()
