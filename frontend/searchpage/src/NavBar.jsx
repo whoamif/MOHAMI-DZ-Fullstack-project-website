@@ -27,7 +27,7 @@ function NavBar() {
             Annuaire
           </a>
           {isAnnuaireDropdownVisible && (
-            <div className='flex absolute top-full left-0 mt-1 '>
+            <div className='flex absolute top-full left-0 mt-1  z-10'>
             <div className='flex flex-col  rounded-b-lg bg-gray-200 text-left p-2 gap-2'>
               <a className='text-black rounded-b-lg hover:bg-orange-200 hover:text-black bg-white p-2' href="">
               DROIT ADMINISTRATIF

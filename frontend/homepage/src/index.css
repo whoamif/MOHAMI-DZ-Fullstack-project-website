@@ -71,3 +71,25 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.swiper-button-prev {
+  font-family: swiper-icons;
+  color: orange;
+  left: 1%;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  padding-top:4px;
+  line-height: 1;
+}
+.swiper-button-next{
+  right: 8%;
+  font-family: swiper-icons;
+  color: orange;
+  padding-top:4px;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+  color: orange;
+
+}

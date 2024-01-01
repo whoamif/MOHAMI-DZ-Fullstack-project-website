@@ -29,6 +29,7 @@ a:hover {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   display: flex;
   place-items: center;
   min-width: 320px;
@@ -70,4 +71,30 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+.swiper-button-prev {
+  font-family: swiper-icons;
+  position:absolute!important;
+  left: 40%!important;
+  top: 98%!important;
+  color: orange;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  padding-top:4px;
+  line-height: 1;
+}
+.swiper-button-next{
+  font-family: swiper-icons;
+  position:absolute!important;
+  left: 50%!important;
+  top: 98%!important;
+  color: orange;
+  padding-top:4px;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+  color: orange;
+
 }
