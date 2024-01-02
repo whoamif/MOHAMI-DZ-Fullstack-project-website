@@ -14,17 +14,14 @@ class UserAccountManager(BaseUserManager):
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(unique=True, max_length=100)
     name = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_lawyer = models.BooleanField(default=False)
 
     objects = UserAccountManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     def get_full_name(self):
-        return self.name
-
-    def get_short_name(self):
         return self.name
 
     def __str__(self):
