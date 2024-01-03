@@ -1,76 +1,110 @@
+// App.js
 import React, { useState } from 'react';
-import NavBar from './NavBar';
+import './App.css';
+import Navbar from './Navbar';
 import Slider from './Slider';
 import Footer from './Footer';
+import Albums from './Albums';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [locationTerm, setLocationTerm] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const [name, setName] = useState('user name');
+  const [profilePicture, setProfilePicture] = useState('./elements/default.svg');
+  const [password, setPassword] = useState('');
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  const toggleSearch = () => {
+    setIsSearchVisible(!isSearchVisible);
   };
 
-  const handleLocationChange = (event) => {
-    setLocationTerm(event.target.value);
+  const closeSearch = () => {
+    setIsSearchVisible(false);
   };
 
-  const handleSearch = () => {
-    // Perform search with searchTerm and locationTerm
-    console.log('Search Term:', searchTerm);
-    console.log('Location Term:', locationTerm);
+  const toggleSettings = () => {
+    setIsSettingsVisible(!isSettingsVisible);
+  };
+
+  const closeSettings = () => {
+    setIsSettingsVisible(false);
+  };
+
+  const saveSettings = () => {
+    // Implement logic to save settings (update name, profile picture, and password)
+    // For now, we'll just log the changes
+    console.log('Name:', name);
+    console.log('Profile Picture:', profilePicture);
+    console.log('Password:', password);
+
+    // Close the settings modal
+    closeSettings();
   };
 
   return (
     <>
-      <div className='flex flex-col w-screen min-h-screen'>
-        <NavBar></NavBar>
-
-        <div className='bg-cover bg-center w-screen min-h-96' style={{ backgroundImage: `url('./elements/bgimg.svg')`, height: '100%' }}>
-          <div className='text-black w-2/5 mt-20 ml-16 flex flex-col gap-5'>
-            <p className='text-3xl'>Navigating Legal Excellence in Algeria</p>
-            <p className='text-2xl font-thin'>Your Trusted Advocates for Justice and Expertise</p>
-          </div>
-          <div className='flex gap-2 place-items-baseline ml-10 mt-20'>
-            <div className='rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg'>
-              <FontAwesomeIcon className='text-orange-500' icon={faMagnifyingGlass} />
-              <input
-                className='ml-2 w-80 h-full bg-transparent outline-none'
-                type="text"
-                placeholder='Search for your lawyer'
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
+      <div className='flex flex-col w-screen gap-12 min-h-screen bg-custom-bg-color overflow-x-hidden'>
+        <Navbar isSearchVisible={isSearchVisible} toggleSearch={toggleSearch} closeSearch={closeSearch} />
+        <div className='flex flex-col w-screen justify-center p-4'>
+          <div className='w-10/12 h-96 shadow-2xl items-start flex mt-24 hover:shadow-lg p-12 bg-gray-700 rounded-lg'>
+            <img className='w-1/5' src={profilePicture} alt='' />
+            <div className='flex flex-col text-white text-left gap-12 ml-12 mt-16'>
+              <div className='font-bold text-2xl'>
+                <p>{name}</p>
+              </div>
+              <div className='font-thin text-lg'>
+                <span>4</span> Albums
+              </div>
+              <div className='font-thin text-lg'>
+                <span>4</span> Songs
+              </div>
             </div>
-            <div className='rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg'>
-              <FontAwesomeIcon className='text-orange-500' icon={faLocationDot} />
-              <input
-                className='ml-2 w-80 h-full bg-transparent outline-none'
-                type="text"
-                placeholder='Search for location'
-                value={locationTerm}
-                onChange={handleLocationChange}
-              />
-            </div>
-            <button
-              className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 place-items-center'
-              onClick={handleSearch}
-            >
-              Search
-            </button>
+            <FontAwesomeIcon
+              className='text-white text-2xl mt-12 ml-96 cursor-pointer'
+              icon={faGear}
+              onClick={toggleSettings}
+            />
           </div>
         </div>
-
-        <div className='text-black text-3xl text-left p-12 font-bold'>
-          <span>Your search for "<span>{searchTerm}</span>" near "<span>{locationTerm}</span>"</span>
+        {isSettingsVisible && (
+          <div className='modal-overlay'>
+            <div className='settings-modal'>
+              <div className='flex flex-col w-96 h-96 place-items-center p-4 bg-gray-700 rounded-lg'>
+                <input
+                  type='text'
+                  placeholder='New Name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className='input-field'
+                />
+                <input
+                  type='text'
+                  placeholder='New Profile Picture URL'
+                  value={profilePicture}
+                  onChange={(e) => setProfilePicture(e.target.value)}
+                  className='input-field'
+                />
+                <input
+                  type='password'
+                  placeholder='New Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className='input-field'
+                />
+                <button onClick={saveSettings} className='save-button'>
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        <div>
+          <Albums></Albums>
         </div>
-
         <div>
           <Slider></Slider>
         </div>
-
         <Footer></Footer>
       </div>
     </>
@@ -78,3 +112,4 @@ function App() {
 }
 
 export default App;
+/* hiiiii guys i hope u doing well juste to push something in github i love the green squares  */
