@@ -19,8 +19,10 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView #to connect to react side
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('authh/', include('djoser.social.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+
 ]
 urlpatterns += [
     re_path(r'^.*', TemplateView.as_view(template_name='index.html')) #to connect to react side
