@@ -1,0 +1,2 @@
+cryptography>=3.4
+deprecated

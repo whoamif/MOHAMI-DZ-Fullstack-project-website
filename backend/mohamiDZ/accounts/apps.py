@@ -6,5 +6,3 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
 
 #for admin panel
-class SuitConfig(DjangoSuitConfig):
-    layout = 'horizontal'

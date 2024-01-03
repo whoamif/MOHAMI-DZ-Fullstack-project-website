@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os 
 from datetime import timedelta
+from .jazzmin import JAZZMIN_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,12 +35,13 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    
-    'suit', #to costumise admin panel
+    'oauth2_provider',  # add it to remove elements in the admin panel
+    #'django_jazzmin',
+    'jazzmin',  # to customize the admin panel
     'accounts',
     'djoser',
     'rest_framework',
-    'corsheaders', # need to linking with react
+    'corsheaders',  # need for linking with React
     'social_django',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
@@ -50,11 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-ACCOUNTS_CONFIG = 'path.to.AccountsConfig'
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Your Admin Name',
-    # Other suit configuration options...
-}
+
+
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -138,6 +137,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Add your React app's URL
 ]
@@ -202,3 +203,5 @@ SOACIAL_AUTH_GOOGLE_OAUTH2_SCOOPE = ['https://www.googleapi.com/auth/userinfo.em
 SOACIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 AUTH_USER_MODEL = "accounts.UserAccount"
+
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
