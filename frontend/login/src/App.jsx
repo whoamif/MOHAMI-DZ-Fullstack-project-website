@@ -19,7 +19,7 @@ const GoogleLoginButton = () => {
   );
 };
 
-const App = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -76,7 +76,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default Login;
 
 /*import { useState } from "react";
 import "./App.css";
@@ -146,10 +146,10 @@ import { useState, useEffect } from "react"; */
       ),
   }); */
 
-  const handleSubmit = async (values) => {
+  /* const handleSubmit = async (values) => {
     // Handle form submission logic here
     console.log("Form values:", values);
-    setErrors(null);
+    setErrors(null); */
 
     /*  const { token, user, error } = await loginUser(
       values.email,
@@ -172,25 +172,20 @@ import { useState, useEffect } from "react"; */
       return { ...prev, password: "incorrect password" };
     });
     } */
- {} };
+/*  {} };
   return (
     <div className=" flex h-screen ">
-      {/* grandparent wrapper */}
       <div className=" basis-[60%] ">
-        {/* left side bg */}
         <img src={bg} className=" bg- h-screen w-full object-cover" alt="" />
       </div>
       <div className=" basis-[40%] flex flex-col h-screen items-center">
-        {/* right side */}
         <header className=" text-center m-auto">
-          {/* Welcome */}
           <h1 className=" tracking-wider font-semibold text-3xl">
             Welcome Back !
           </h1>
           <small className=" text-gray-500">Please enter your details</small>
         </header>
         <form className=" basis-[60%] w-[65%]" action="">
-          {/* form inputs */}
           <div className=" flex flex-col ">
             <label htmlFor="email">Email</label>
             <input
@@ -214,7 +209,6 @@ import { useState, useEffect } from "react"; */
           </div>
 
           <div className="flex justify-between mb-9 mt-4">
-            {/* password actions */}
             <div className="flex gap-2 items-center">
               <input type="checkbox" name="remember" id="remember" />
               <label htmlFor="remember" className=" text-xs">
@@ -228,7 +222,6 @@ import { useState, useEffect } from "react"; */
           </div>
 
           <div className="flex flex-col items-center gap-4  ">
-            {/* login methods */}
             <button
               className=" bg-customDark rounded-full p-2.5 tracking-wider font-medium text-white w-full"
               type="submit"
@@ -255,8 +248,5 @@ import { useState, useEffect } from "react"; */
         </footer>
       </div>
     </div>
-  );/*}
-//}
-
-//export default SignIn;*/
+  ); */
 

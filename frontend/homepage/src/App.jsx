@@ -11,7 +11,7 @@ function App() {
     <>
       <div className='flex flex-col w-screen min-h-screen  '>
         
-        <NavBar></NavBar>
+        <NavBar />
 
         <div className='bg-cover bg-center w-screen min-h-96 ' style={{ backgroundImage: `url('./elements/bgimg.svg')`, height: '100%'}}>
           <div className='text-black w-2/5	mt-20 ml-16 flex flex-col gap-5'>

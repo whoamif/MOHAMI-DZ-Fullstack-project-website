@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function NavBar() {
   const [isConnexionDropdownVisible, setConnexionDropdownVisible] = useState(false);
@@ -163,9 +165,9 @@ function NavBar() {
         </button>
         {isConnexionDropdownVisible && (
           <div className='flex flex-col rounded-b-lg bg-gray-200'>
-            <a className='text-black  rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
+            <Link to={'/login'} className='text-black  rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
               Login
-            </a>
+            </Link>
             <a className='text-black rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
               Sign up
             </a>
