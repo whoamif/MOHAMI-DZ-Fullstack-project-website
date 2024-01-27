@@ -17,7 +17,9 @@ function NavBar() {
   return (
     <div className='flex justify-between w-full h-20 fixed quicksand p-10 shadow-md items-center relative'>
       <div>
-        <img src="./elements/DZ-Mouhami.svg" alt="" />
+      <Link to={'/'}  href="">
+      <img src="./elements/DZ-Mouhami.svg" alt="" />            </Link>
+       
       </div>
       <div className='flex gap-7 mr-72'>
         <div
@@ -143,9 +145,11 @@ function NavBar() {
             </div>
           )}
         </div>
-        <a className='text-black hover:text-orange-500' href="">
-          Carte Judiciaire
-        </a>
+        <Link to={'/juridique'} className='text-black hover:text-orange-500' href="">
+        Carte Judiciaire
+            </Link>
+         
+        
         <a className='text-black hover:text-orange-500' href="">
           Services
         </a>
@@ -168,9 +172,9 @@ function NavBar() {
             <Link to={'/login'} className='text-black  rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
               Login
             </Link>
-            <a className='text-black rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
+            <Link to={'/signup'} className='text-black rounded-b-lg hover:bg-orange-200 hover:text-black' href="">
               Sign up
-            </a>
+            </Link>
           </div>
         )}
       </div>
