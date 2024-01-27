@@ -24,6 +24,6 @@ class LawyerSearchView(generics.ListAPIView):
         for item in queryset:
             print(item.lawyername)
 
-        return queryset
+        return queryset 
 
 
