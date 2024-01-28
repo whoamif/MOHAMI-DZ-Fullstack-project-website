@@ -1,16 +1,9 @@
+# yourapp/admin.py
+
 from django.contrib import admin
-from .models import UserAccount
+from .models import Lawyer
 
-admin.site.register(UserAccount)
-admin.site.site_header = "DZ-Mouhami"
-admin.site.site_title = "DZ-Mouhami"
+class LawyerAdmin(admin.ModelAdmin):
+    list_display = ('lawyername', 'email', 'Phn_number')  # Specify the fields to display in the list view
 
-from oauth2_provider.models import AccessToken, Application, Grant, RefreshToken, get_application_model
-
-# ... (other code)
-
-# Unregister the models
-admin.site.unregister(AccessToken)
-admin.site.unregister(Application)
-admin.site.unregister(Grant)
-admin.site.unregister(RefreshToken)
+admin.site.register(Lawyer, LawyerAdmin)

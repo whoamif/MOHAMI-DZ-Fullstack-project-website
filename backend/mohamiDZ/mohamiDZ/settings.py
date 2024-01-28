@@ -35,9 +35,9 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'oauth2_provider',  # add it to remove elements in the admin panel
-    #'django_jazzmin',
-    'jazzmin',  # to customize the admin panel
+    #'oauth2_provider',  # add it to remove elements in the admin panel
+    'jazzmin',
+# to customize the admin panel
     'accounts',
     'djoser',
     'rest_framework',
@@ -94,8 +94,12 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gl_data',        # Your MySQL database name
+        'USER': 'root',  # Your MySQL username
+        'PASSWORD': '',  # Your MySQL password
+        'HOST': 'localhost',      # Your MySQL server address
+        'PORT': '3306',           # Your MySQL server port
     }
 }
 #email
