@@ -1,10 +1,10 @@
 import './App.css'
-import NavBar from '../../src/NavBar.jsx'
 import Footer from './Footer'
 import photo from './headerpic.svg'
 import pic from './jur.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass , faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import NavBar from '../../NavBar';
 
 function App() {
   
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <div className='flex flex-col w-screen min-h-screen'>
-      <NavBar></NavBar>
+      <NavBar />
 
       <div className='bg-cover bg-center w-screen min-h-96 ' style={{ backgroundImage:photo , height: '100%'}}>
           <div className='text-black w-2/5	mt-20 ml-16 flex flex-col gap-5'>

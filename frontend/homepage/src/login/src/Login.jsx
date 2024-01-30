@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
-import Footer from '../../src/Footer.jsx'
+import Footer from '../../Footer.jsx';
 
 
 const GoogleLoginButton = () => {
@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col w-screen m-auto font-quicksand overflow-x-hidden bg-red'>
+    <div className='flex flex-col w-screen mx-auto font-quicksand overflow-x-hidden bg-red'>
       <div className='flex w-screen h-2/3'>
         <div className='flex flex-col p-16 w-1/2 gap-5 pl-32 '>
           <img className='w-60 ' src="./elements/DZ-Mouhami.svg" alt="" />
@@ -71,7 +71,7 @@ const Login = () => {
       </div>
 
        
-      <Footer></Footer>
+      <Footer/>
     </div>
   );
 };
