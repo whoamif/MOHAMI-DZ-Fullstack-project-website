@@ -18,41 +18,41 @@ function LawyerSlides() {
     >
       <SwiperSlide>
         <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
+          <img className=' ' src="./elements/mohami.png" alt="" />
+          <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
+          <img className=' ' src="./elements/mohami2.jpg" alt="" />
+          <p className='text-black font-bold'>ME SAMIR SAYAH</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
+          <img className=' ' src="./elements/mohami3.jpeg" alt="" />
+          <p className='text-black font-bold'>MAÎTRE KOUCEILA ZERGUINE</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
           <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
           <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
+          <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
           <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
           <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
+          <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
           <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
         </div>
       </SwiperSlide>
