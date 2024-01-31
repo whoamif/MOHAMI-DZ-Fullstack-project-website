@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
-import Footer from '../../Footer.jsx';
-import axios from 'axios';
+import React, { useState } from "react";
+import { GoogleLogin } from "react-google-login";
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "../../Footer.jsx";
+import axios from "axios";
+import rightImg from "../elements/bgright.svg"
 
-const handleLogin = (email, password) => {
+
+const handleLogin = (email, password, navigate) => {
   const data = {
     email: email,
     password: password,
   };
 
-  axios.post('http://127.0.0.1:8000/auth/jwt/create/', data)
-    .then(response => {
-      console.log(response.data);
+  axios
+    .post("http://127.0.0.1:8000/auth/jwt/create/", data)
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem("token", response.data.access);
+      navigate("/");
     })
-    .catch(error => {
-      console.error('Error logging in:', error);
+    .catch((error) => {
+      console.error("Error logging in:", error);
     });
 };
 
@@ -25,19 +31,20 @@ const GoogleLoginButton = () => {
 
   return (
     <GoogleLogin
-      className='w-44 ml-52'
+      className="w-44 "
       clientId="1038606191602-deqg28kg6lqaphdff40hbv33qe0fqklu.apps.googleusercontent.com"
       buttonText="Login with Google"
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
-      cookiePolicy={'single_host_origin'}
+      cookiePolicy={"single_host_origin"}
     />
   );
 };
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -48,35 +55,50 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col w-screen mx-auto font-quicksand overflow-x-hidden bg-red'>
-      <div className='flex w-screen h-2/3'>
-        <div className='flex flex-col p-16 w-1/2 gap-5 pl-32 '>
-          <img className='w-60 ' src="./elements/DZ-Mouhami.svg" alt="" />
-          <div className='flex flex-col ml-32 gap-5 '>
-            <p className='font-bold text-3xl mt-4'>Login</p>
+    <div className="flex flex-col  w-screen items-center font-quicksand overflow-x-hidden ">
+      <div className="flex w-screen justify-between">
+        <div className="flex flex-col items-center p-16 basis-[40%] gap-5 pl-32 ">
+          <Link to={"/"}>
+            <img className="w-60 " src="./elements/DZ-Mouhami.svg" alt="" />
+          </Link>
+          <div className="flex flex-col items-center  gap-5 ">
+            <p className="font-bold text-3xl mt-4">Login</p>
             <input
-              className='h-10 p-4 border-2 w-80 ml-24'
+              className="h-10 p-4 border-2 w-80 "
               type="email"
               placeholder="Email"
               value={email}
               onChange={handleEmailChange}
             />
             <input
-              className='h-10  p-4 border-2 rounded-sm w-80 ml-24'
+              className="h-10  p-4 border-2 rounded-sm w-80 "
               type="password"
               placeholder="Password"
               value={password}
               onChange={handlePasswordChange}
             />
-            <button className='w-44 bg-orange-500 hover:bg-orange-100 text-white font-bold ml-40' onClick={() => handleLogin(email, password)}>Login</button>
-            <a className=' cursor-pointer ml-44 font-thin text-black hover:underline hover:text-black'>Forgot password?</a>
+            <button
+              className="w-80 bg-orange-500 hover:bg-orange-100 text-white font-bold"
+              onClick={() => handleLogin(email, password, navigate)}
+            >
+              Login
+            </button>
+            <a className=" cursor-pointer font-thin text-black hover:underline hover:text-black">
+              Forgot password?
+            </a>
             <img src="./elements/fassel.svg" alt="" />
           </div>
           <GoogleLoginButton />
-          <p className='ml-10 mt-10'>Don’t have an account? <a href="">Sign Up</a></p>
+          <div className=" mt-10">
+            Don’t have an account?{" "}
+            <Link to={"/signup"} className="text-blue-500" href="">
+              Sign Up
+            </Link>
+          </div>
         </div>
+        <img src={rightImg} className=" h-[40rem] " alt="" />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

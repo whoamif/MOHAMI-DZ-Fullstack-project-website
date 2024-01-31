@@ -141,7 +141,7 @@ USE_TZ = True
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Add your React app's URL
+    "http://localhost:5173",  # Add your React app's URL
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

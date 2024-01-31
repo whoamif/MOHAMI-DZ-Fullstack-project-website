@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import NavBar from '../../NavBar';
-import Footer from '../../Footer';
+import React, { useState } from "react";
+import "tailwindcss/tailwind.css";
+import NavBar from "../../NavBar";
+import Footer from "../../Footer";
 
 const ProfilePage = () => {
-  const [selectedOption, setSelectedOption] = useState('UserProfile');
+  const [selectedOption, setSelectedOption] = useState("UserProfile");
   const [formData, setFormData] = useState({
-    name: 'Siham',
-    email: 's_aitbaziz@estin.dz',
-    imageUrl: '',
+    name: "Siham",
+    email: "s_aitbaziz@estin.dz",
+    imageUrl: "",
   });
 
-  const [comments, setComments] = useState([
-    
-    { id: 1, text: 'merci' },
-  ]);
+  const [comments, setComments] = useState([{ id: 1, text: "merci" }]);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -32,23 +29,26 @@ const ProfilePage = () => {
   };
 
   const deleteComment = (commentId) => {
-    const updatedComments = comments.filter((comment) => comment.id !== commentId);
+    const updatedComments = comments.filter(
+      (comment) => comment.id !== commentId
+    );
     setComments(updatedComments);
   };
 
   return (
     <div className="flex flex-col w-screen m-auto">
-    
-      <NavBar/>
+      <NavBar />
       <div className="w-full">
         <h1 className="text-2xl font-bold mb-4">My Profile</h1>
         <ul className="space-y-4">
           <li>
             <button
               className={`w-full py-2 px-4 text-left ${
-                selectedOption === 'UserProfile' ? 'bg-orange-400 text-white' : ''
+                selectedOption === "UserProfile"
+                  ? "bg-orange-400 text-white"
+                  : ""
               }`}
-              onClick={() => handleOptionChange('UserProfile')}
+              onClick={() => handleOptionChange("UserProfile")}
             >
               User Profile
             </button>
@@ -56,21 +56,22 @@ const ProfilePage = () => {
           <li>
             <button
               className={`w-full py-2 px-4 text-left ${
-                selectedOption === 'RecentComment' ? 'bg-orange-400 text-white' : ''
+                selectedOption === "RecentComment"
+                  ? "bg-orange-400 text-white"
+                  : ""
               }`}
-              onClick={() => handleOptionChange('RecentComment')}
+              onClick={() => handleOptionChange("RecentComment")}
             >
               Recent Comment
             </button>
           </li>
         </ul>
       </div>
-    
 
       <div className="border-1 border-orange-500 h mr-4"></div>
 
       <div className="w-2/3 p-4 ">
-        {selectedOption === 'UserProfile' ? (
+        {selectedOption === "UserProfile" ? (
           <UserProfileSection formData={formData} setFormData={setFormData} />
         ) : (
           <RecentCommentSection
@@ -81,8 +82,7 @@ const ProfilePage = () => {
           />
         )}
       </div>
-      <Footer/>
-
+      <Footer />
     </div>
   );
 };
@@ -118,7 +118,6 @@ const UserProfileSection = ({ formData, setFormData }) => {
   };
 
   const handleSaveClick = () => {
-
     setEditing(false);
   };
 
@@ -128,12 +127,20 @@ const UserProfileSection = ({ formData, setFormData }) => {
       <div className="flex flex-col items-center mb-4">
         <div className="w-32 h-32 bg-gray-400 rounded-full overflow-hidden mb-4 relative pt-12">
           {formData.imageUrl ? (
-            <img src={formData.imageUrl} alt="User" className="w-full h-full object-cover" />
+            <img
+              src={formData.imageUrl}
+              alt="User"
+              className="w-full h-full object-cover"
+            />
           ) : (
             <span>Photo</span>
           )}
           <label className="text-blue-500 underline cursor-pointer absolute bottom-2 left-12">
-            <input type="file" className="hidden" onChange={handleImageChange} />
+            <input
+              type="file"
+              className="hidden"
+              onChange={handleImageChange}
+            />
             🖊️
           </label>
         </div>
@@ -197,13 +204,16 @@ const UserProfileSection = ({ formData, setFormData }) => {
       ) : (
         <div className="text-left flex flex-col gap-2 ml-44">
           <p className="">
-            <span className="font-bold text-xl mr-2">Name:</span> {formData.name}
+            <span className="font-bold text-xl mr-2">Name:</span>{" "}
+            {formData.name}
           </p>
           <p className="">
-            <span className="font-bold text-xl mr-2">Email:</span> {formData.email}
+            <span className="font-bold text-xl mr-2">Email:</span>{" "}
+            {formData.email}
           </p>
           <p className="">
-            <span className="font-bold text-xl mr-2">Phone:</span> {formData.phone}
+            <span className="font-bold text-xl mr-2">Phone:</span>{" "}
+            {formData.phone}
           </p>
         </div>
       )}
@@ -211,12 +221,14 @@ const UserProfileSection = ({ formData, setFormData }) => {
   );
 };
 
-
-
-
-const RecentCommentSection = ({ comments, addComment, updateComment, deleteComment }) => {
+const RecentCommentSection = ({
+  comments,
+  addComment,
+  updateComment,
+  deleteComment,
+}) => {
   const [editingCommentId, setEditingCommentId] = useState(null);
-  const [editedCommentText, setEditedCommentText] = useState('');
+  const [editedCommentText, setEditedCommentText] = useState("");
 
   const handleEditComment = (commentId, commentText) => {
     setEditingCommentId(commentId);
@@ -226,12 +238,12 @@ const RecentCommentSection = ({ comments, addComment, updateComment, deleteComme
   const handleSaveEdit = (commentId) => {
     updateComment(commentId, editedCommentText);
     setEditingCommentId(null);
-    setEditedCommentText('');
+    setEditedCommentText("");
   };
 
   const handleCancelEdit = () => {
     setEditingCommentId(null);
-    setEditedCommentText('');
+    setEditedCommentText("");
   };
 
   const handleDeleteComment = (commentId) => {
@@ -245,7 +257,6 @@ const RecentCommentSection = ({ comments, addComment, updateComment, deleteComme
         {comments.map((comment) => (
           <li key={comment.id} className="mb-4">
             <div className="flex flex-col text-left">
-              
               <div className="flex-1">
                 {editingCommentId === comment.id ? (
                   <>
@@ -276,7 +287,9 @@ const RecentCommentSection = ({ comments, addComment, updateComment, deleteComme
                     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                       <button
                         className="border-2 border-orange-500 rounded-md px-4  hover:bg-red-200"
-                        onClick={() => handleEditComment(comment.id, comment.text)}
+                        onClick={() =>
+                          handleEditComment(comment.id, comment.text)
+                        }
                       >
                         Update
                       </button>
