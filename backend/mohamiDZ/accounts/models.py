@@ -49,6 +49,9 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(unique=True, max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    wilaya = models.CharField(max_length=100)
+    dateofbirth = models.DateField()
+    phone_num = models.IntegerField()
     is_staff = models.BooleanField(default=False)
     is_lawyer = models.BooleanField(default=False)
 
