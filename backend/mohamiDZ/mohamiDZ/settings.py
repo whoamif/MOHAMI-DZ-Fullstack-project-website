@@ -13,7 +13,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+from datetime import timedelta
+
+
+
+# Build paths inside the project like this: BASE
+# _DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -33,8 +39,17 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+
+
+    #'oauth2_provider',  # add it to remove elements in the admin panel
+    #'jazzmin',
+# to customize the admin panel
+    'suit',
+
     'accounts',
     'djoser',
+    
+  
     'rest_framework',
     'corsheaders',
     
@@ -84,7 +99,12 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+
         'NAME': BASE_DIR / 'db.sqlite3',
+
+        'NAME': BASE_DIR /'db.sqlite3',        # Your MySQL database name
+        
+
     }
 }
 #email
@@ -127,7 +147,7 @@ USE_I18N = True
 USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Add your React app's URL
+    "http://localhost:5173",  # Add your React app's URL
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -173,3 +193,4 @@ DJOSER = {
 }
 
 AUTH_USER_MODEL = "accounts.UserAccount"
+

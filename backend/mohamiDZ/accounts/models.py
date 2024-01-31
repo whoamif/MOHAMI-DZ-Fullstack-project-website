@@ -16,6 +16,8 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_lawyer =models.BooleanField(default=False)
+
 
     objects = UserAccountManager()
     USERNAME_FIELD = 'email'

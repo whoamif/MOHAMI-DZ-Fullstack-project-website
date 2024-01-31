@@ -6,6 +6,7 @@ import Juridique from './juridique/src/Juridique.jsx';
 import Search from './searchpage/src/Search.jsx';
 import Profile from './extra/components/Profile.jsx';
 import Avocat from './extra/components/Avocat.jsx';
+import Singupuser from './singupuser/src/Singupuser.jsx'
 
 const RoutesApp = () => {
   return (
@@ -17,6 +18,7 @@ const RoutesApp = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Singup />} />
         <Route path="/juridique" element={<Juridique />} />
+        <Route path='/singupuser' element={<Singupuser/>}/>
         <Route path="/searchpage" element={<Search />} />
       </Routes>
     </BrowserRouter>

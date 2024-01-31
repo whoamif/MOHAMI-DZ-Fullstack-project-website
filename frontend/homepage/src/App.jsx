@@ -1,4 +1,5 @@
 import './App.css'
+import axios from 'axios';
 import NavBar from './NavBar'
 import Footer from './Footer'
 import LawyerSlides from './LawyerSlides';
