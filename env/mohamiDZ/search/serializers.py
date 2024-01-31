@@ -7,3 +7,6 @@ class LawyersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lawyers
         fields = '__all__'
+
+
+        
