@@ -42,18 +42,17 @@ const Singupuser = () => {
   const handleSignup = () => {
     const data = {
       email: email,
-      
+      isLawyer :false,
       password: password,
+      
       
     };
 
-    axios.post('http://127.0.0.1:8000/authh/users/', data)
+    axios.post('http://127.0.0.1:8000/auth/users/', data)
       .then(response => {
         console.log(response.data);
       })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+      
   };
 
   const handleCheckboxChange = (e) => {

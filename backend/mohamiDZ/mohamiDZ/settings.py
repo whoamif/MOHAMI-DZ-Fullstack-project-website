@@ -12,14 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os 
-
-
 from datetime import timedelta
+from .jazzmin import JAZZMIN_SETTINGS
 
-
-
-# Build paths inside the project like this: BASE
-# _DIR / 'subdir'.
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -39,20 +35,16 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-
-
     #'oauth2_provider',  # add it to remove elements in the admin panel
-    #'jazzmin',
+    'jazzmin',
 # to customize the admin panel
-    'suit',
-
     'accounts',
     'djoser',
-    
-  
     'rest_framework',
-    'corsheaders',
-    
+    'corsheaders',  # need for linking with React
+    'social_django',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,7 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
 MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,6 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
@@ -99,12 +95,8 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-
-        'NAME': BASE_DIR / 'db.sqlite3',
-
-        'NAME': BASE_DIR /'db.sqlite3',        # Your MySQL database name
-        
-
+        'NAME': BASE_DIR /"sqlite3",        # Your MySQL database name
+             # Your MySQL server port
     }
 }
 #email
@@ -146,8 +138,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Add your React app's URL
+    "http://localhost:3000",  # Add your React app's URL
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -169,8 +163,19 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+)
+
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_TOKEN_CLASSES': (
+        'rest_framework_simplejwt.tokens.AccessToken',
+    )
 }
 
 DJOSER = {
@@ -188,9 +193,16 @@ DJOSER = {
     'SERIALIZERS' : {
         'user_create' : 'accounts.serializers.UserCreateSerializer',
         'user' : 'accounts.serializers.UserCreateSerializer',
+        'current_user' : 'accounts.serializers.UserCreateSerializer',
         'user_delete' : 'djoser.serializers.UserDeleteSerializer',
     }
 }
 
+SOACIAL_AUTH_GOOGLE_OAUTH2_KEY = "669693983148-3i3tmnnqmrhok6th8po2e05qpg5duhnp.apps.googleusercontent.com"
+SOACIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
+SOACIAL_AUTH_GOOGLE_OAUTH2_SCOOPE = ['https://www.googleapi.com/auth/userinfo.email', 'https://www.googleapi.com/auth/userinfo.profile', 'openid']
+SOACIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+
 AUTH_USER_MODEL = "accounts.UserAccount"
 
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
