@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import Footer from '../../Footer.jsx';
+import axios from 'axios';
 
+const handleLogin = (email, password) => {
+  const data = {
+    email: email,
+    password: password,
+  };
+
+  axios.post('http://127.0.0.1:8000/auth/jwt/create/', data)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error logging in:', error);
+    });
+};
 
 const GoogleLoginButton = () => {
   const responseGoogle = (response) => {
@@ -32,10 +47,6 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
-    console.log('Login button clicked');
-  };
-
   return (
     <div className='flex flex-col w-screen mx-auto font-quicksand overflow-x-hidden bg-red'>
       <div className='flex w-screen h-2/3'>
@@ -57,25 +68,17 @@ const Login = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-            <button className='w-44 bg-orange-500 hover:bg-orange-100 text-white font-bold ml-40 ' onClick={handleLogin}>Login</button>
+            <button className='w-44 bg-orange-500 hover:bg-orange-100 text-white font-bold ml-40' onClick={() => handleLogin(email, password)}>Login</button>
             <a className=' cursor-pointer ml-44 font-thin text-black hover:underline hover:text-black'>Forgot password?</a>
             <img src="./elements/fassel.svg" alt="" />
           </div>
           <GoogleLoginButton />
-
           <p className='ml-10 mt-10'>Don’t have an account? <a href="">Sign Up</a></p>
         </div>
-        
-                 
-      
       </div>
-
-       
       <Footer/>
     </div>
   );
 };
 
 export default Login;
-
-
