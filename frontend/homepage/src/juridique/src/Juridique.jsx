@@ -1,10 +1,10 @@
 import './App.css'
-import Footer from './Footer'
 import photo from './headerpic.svg'
 import pic from './jur.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass , faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import NavBar from '../../NavBar';
+import Footer from '../../Footer'
 
 function App() {
   
@@ -115,7 +115,7 @@ site officiel du ministère de la justice algérien <br />
 </a> <br />
           </p>
         </div>
-        <Footer></Footer>
+        <Footer/>
        </div>
     </>
   )
