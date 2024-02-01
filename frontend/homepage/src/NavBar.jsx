@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 function NavBar() {
   const { t } = useTranslation(); // Using the t function for translations
