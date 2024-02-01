@@ -53,7 +53,12 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     dateofbirth = models.DateField()
     phone_num = models.IntegerField()
     is_staff = models.BooleanField(default=False)
+<<<<<<< Updated upstream
     is_lawyer = models.BooleanField(default=False)
+=======
+    is_lawyer =models.BooleanField(default=False)
+
+>>>>>>> Stashed changes
 
     objects = UserAccountManager()
     lawyers = LawyerManager()

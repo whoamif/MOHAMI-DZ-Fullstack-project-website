@@ -15,7 +15,13 @@ import os
 from datetime import timedelta
 from .jazzmin import JAZZMIN_SETTINGS
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+from datetime import timedelta
+
+
+
+# Build paths inside the project like this: BASE
+# _DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -35,11 +41,23 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+<<<<<<< Updated upstream
     #'oauth2_provider',  # add it to remove elements in the admin panel
     'jazzmin',
 # to customize the admin panel
+=======
+
+
+    #'oauth2_provider',  # add it to remove elements in the admin panel
+    #'jazzmin',
+# to customize the admin panel
+    'suit',
+
+>>>>>>> Stashed changes
     'accounts',
     'djoser',
+    
+  
     'rest_framework',
     'corsheaders',  # need for linking with React
     'social_django',
@@ -94,12 +112,22 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< Updated upstream
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gl_data',        # Your MySQL database name
         'USER': 'root',  # Your MySQL username
         'PASSWORD': '',  # Your MySQL password
         'HOST': 'localhost',      # Your MySQL server address
         'PORT': '3306',           # Your MySQL server port
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+
+        'NAME': BASE_DIR / 'db.sqlite3',
+
+        'NAME': BASE_DIR /'db.sqlite3',        # Your MySQL database name
+        
+
+>>>>>>> Stashed changes
     }
 }
 #email
@@ -144,7 +172,7 @@ USE_TZ = True
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Add your React app's URL
+    "http://localhost:5173",  # Add your React app's URL
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -208,4 +236,7 @@ SOACIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 AUTH_USER_MODEL = "accounts.UserAccount"
 
+<<<<<<< Updated upstream
 JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+=======
+>>>>>>> Stashed changes
