@@ -12,7 +12,14 @@ from rest_framework import filters
 
 
 class LawyerSearchView(generics.ListAPIView):
-    search_fields = ['lawyername','adr']
+    search_fields = ['lawyername']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Lawyers.objects.all()
+    serializer_class = LawyersSerializer 
+
+
+class LawyerSearchViewAdr(generics.ListAPIView):
+    search_fields = ['adr'] 
     filter_backends = (filters.SearchFilter,)
     queryset = Lawyers.objects.all()
     serializer_class = LawyersSerializer 
