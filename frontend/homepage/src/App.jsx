@@ -301,7 +301,7 @@ const App = () => {
               className="text-black hover:underline hover:text-black font-thin cursor:pointer"
               onClick={() => {
                 
-                handleCitySearch("Annab");
+                handleCitySearch("Annaba");
                 
               }}
             >
