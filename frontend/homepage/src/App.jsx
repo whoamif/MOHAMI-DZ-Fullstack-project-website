@@ -7,10 +7,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import LawyerSlides from "./LawyerSlides";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import { searchContext } from "./RoutesApp";
 import { useNavigate } from "react-router-dom";
 

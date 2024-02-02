@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./index.css"
+import "./index.css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { searchContext } from "../../RoutesApp";
@@ -39,7 +39,6 @@ function Slider() {
                   <Rating name="read-only" value={value} readOnly />
                 </div>
                 <div className="flex text-orange-500 gap-2">
-               
                   {truncatedDom}
                   {lawyer?.domains.length > 50 && " ···"}
                 </div>
@@ -48,9 +47,12 @@ function Slider() {
                   {lawyer?.bio.length > 50 && " ···"}
                 </p>
               </div>
-              <button className="rounded-sm bg-orange-500 w-full text-white w-44 h-12 hover:bg-orange-200 mt-24 hover:border-0">
-                <Link to={`/avocat/${lawyer?.lawyer_id}`}>see the profile</Link>
-              </button>
+              <Link to={`/avocat/${lawyer?.lawyer_id}`}>
+                {" "}
+                <button className=" px-6 min-w-max rounded-sm bg-orange-500 w-full text-white w-44 h-12 hover:bg-orange-200 mt-24 hover:border-0">
+                  see the profile
+                </button>
+              </Link>
             </div>
           </SwiperSlide>
         );

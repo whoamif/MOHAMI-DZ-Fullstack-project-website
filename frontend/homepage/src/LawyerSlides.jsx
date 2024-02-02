@@ -5,7 +5,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 function LawyerSlides() {
-  
+  const handleNameSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/search/?search=${encodeURIComponent(name)}`
+      );
+      data1 = response.data;
+      console.log(data1);
+
+      return data1;
+    } catch (error) {
+      console.error("Error searching by name:", error);
+      throw error; 
+    }
+  };
   return (
     <Swiper
       modules={[Navigation]}
@@ -21,7 +34,7 @@ function LawyerSlides() {
           <img className=' ' src="./elements/mohami.png" alt="" />
           <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
           <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'></button>
         </div>
       </SwiperSlide>
       <SwiperSlide>

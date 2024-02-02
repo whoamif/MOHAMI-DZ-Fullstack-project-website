@@ -1,7 +1,6 @@
 import profilavocat from "../components/av.jpeg";
 import React, { useContext, useEffect, useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import Message from "../components/btnmessage";
 import CircleRating from "./CircleRating";
 import Rendezvous from "./rendezvous";
 import Horaire from "./horaire";
@@ -12,6 +11,7 @@ import Footer from "../../Footer";
 import { Link, useParams } from "react-router-dom";
 import { searchContext } from "../../RoutesApp";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Avocat = ({ lawyers }) => {
   const { id } = useParams();
@@ -36,6 +36,7 @@ const Avocat = ({ lawyers }) => {
   return (
     <div className=" w-screen m-auto gap-5 flex flex-col">
       <NavBar />
+      <Toaster position="top-right" />
       <div className="flex gap-5 p-12">
         <img
           src={profilavocat}
@@ -68,7 +69,6 @@ const Avocat = ({ lawyers }) => {
 
       <div className="flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 md:space-x-4 mx-auto mt-4">
         <div className="md:order-1">
-          <Message />
         </div>
         <div className="md:order-1">
           <button
@@ -83,7 +83,7 @@ const Avocat = ({ lawyers }) => {
 
       <div className="w-full md:w-3/4 text-xl text-white flex flex-col mx-4 md:mx-0">
         <div className="mt-8 space-y-4 ml-0 md:ml-16">
-          <h1 className="text-orange-600 text-2xl ">Contact</h1>
+          <h1 className="text-orange-600 text-2xl ml-96">Contact</h1>
 
           <div className="flex items-center">
             <FaPhone size={20} className="text-orange-500" />

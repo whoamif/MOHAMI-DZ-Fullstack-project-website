@@ -24,6 +24,7 @@
     "react-card-slider-component": "^1.0.9",
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
+    "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.0.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.22.0",

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { searchContext } from "./RoutesApp.jsx";
+import logo from "../elements/DZ-Mouhami.svg";
 
 function NavBar() {
   const [isConnexionDropdownVisible, setConnexionDropdownVisible] =
@@ -65,8 +66,8 @@ function NavBar() {
   return (
     <div className="flex justify-between w-full h-20 fixed quicksand p-10 shadow-md items-center relative ">
       <div>
-        <Link to={"/"} href="">
-          <img src="./elements/DZ-Mouhami.svg" alt="" />
+        <Link to={"/"} href="" >
+          <img src={logo} alt="im" />
         </Link>
       </div>
       <div className="flex z-40 gap-7 mr-72 w-max ">
