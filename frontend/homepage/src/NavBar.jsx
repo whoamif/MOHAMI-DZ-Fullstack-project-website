@@ -37,6 +37,7 @@ function NavBar() {
       setToken(storedToken);
     }
   }, []);
+  const emailAddress = 'adjissifatimaamina@gmail.com';
 
   const [spec, setSpec] = useState("");
   let data1 = [];
@@ -74,7 +75,7 @@ function NavBar() {
           onMouseEnter={toggleAnnuaireDropdown}
           onMouseLeave={toggleAnnuaireDropdown}
         >
-          <a className="text-black hover:text-orange-500">            {t("annu")}
+          <a className="text-black hover:text-orange-500 cursor-pointer">            {t("annu")}
 </a>
           {isAnnuaireDropdownVisible && (
             <div className="flex absolute top-full left-0 mt-1  z-10">
@@ -398,7 +399,7 @@ function NavBar() {
         <a className="text-black hover:text-orange-500" href="">
           {t("Home")}
         </a>
-        <a className="text-black hover:text-orange-500" href="">
+        <a className="text-black hover:text-orange-500 cursor-pointer" href="" >
           {t("Contact US")}
         </a>
       </div>

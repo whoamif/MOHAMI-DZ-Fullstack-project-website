@@ -8,17 +8,41 @@ import Profile from "./extra/components/Profile.jsx";
 import Avocat from "./extra/components/Avocat.jsx";
 import Singupuser from "./singupuser/src/Singupuser.jsx";
 import Singuplawyer from "./singuplawyer/src/Singuplawyer.jsx";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
+import axios from "axios";
 
 export const searchContext = createContext();
 const RoutesApp = () => {
+  const [lawyers, setLawyers] = useState();
+  useEffect(() => {
+    let data1 = [];
+    const handleNameSearch = async () => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/search/?search=${""}`
+        );
+        data1 = response.data;
+        console.log(data1);
+
+        setLawyers(response.data);
+
+        return data1;
+      } catch (error) {
+        console.error("Error searching by name:", error);
+        throw error;
+      }
+    };
+    handleNameSearch();
+  }, []);
   const [searchResults, setSearchResults] = useState([]);
 
   return (
-    <searchContext.Provider value={{ searchResults, setSearchResults }}>
+    <searchContext.Provider
+      value={{ searchResults, setSearchResults, setLawyers, lawyers }}
+    >
       <BrowserRouter>
         <Routes>
-          <Route path="/avocat" element={<Avocat />}></Route>
+          <Route path={"/avocat/:id"} element={<Avocat lawyers={lawyers} />}></Route>
           <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
@@ -27,9 +51,6 @@ const RoutesApp = () => {
           <Route path="/singupuser" element={<Singupuser />} />
           <Route path="/searchpage" element={<Search />} />
           <Route path="/singuplawyer" element={<Singuplawyer />} />
-          <Route path="/avocat/:lawyerId">
-                
-            </Route>
         </Routes>
       </BrowserRouter>
     </searchContext.Provider>

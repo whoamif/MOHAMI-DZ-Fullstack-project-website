@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { searchContext } from '../../RoutesApp.jsx';
 
+
 function Search() {
   const { t } = useTranslation();
   const navigate = useNavigate()
