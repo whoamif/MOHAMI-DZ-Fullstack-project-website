@@ -1,26 +1,73 @@
-import React, { useState } from 'react';
-import NavBar from './NavBar';
+import React, { useContext, useState } from 'react';
 import Slider from './Slider';
-import Footer from './Footer';
+import NavBar from "../../NavBar.jsx";
+import { useTranslation } from "react-i18next"; 
+import { useNavigate } from "react-router-dom";
+import Footer from "../../Footer.jsx";
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { searchContext } from '../../RoutesApp.jsx';
 
 function Search() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [locationTerm, setLocationTerm] = useState('');
+  const { t } = useTranslation();
+  const navigate = useNavigate()
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  let data1 = [];
+  let data2 = [];
+  let data3 = [];
+  const { setSearchResults, searchResults } = useContext(searchContext)
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleNameSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/search/?search=${encodeURIComponent(name)}`
+      );
+      data1 = response.data;
+      console.log(data1);
+
+      return data1;
+    } catch (error) {
+      console.error("Error searching by name:", error);
+      throw error; 
+    }
   };
 
-  const handleLocationChange = (event) => {
-    setLocationTerm(event.target.value);
+  const handleCitySearch = async (city) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/searchAdr/?search=${encodeURIComponent(
+          city
+        )}`
+      );
+      data2 = response.data;
+      console.log(data2);
+      return data2;
+    } catch (error) {
+      console.error("Error searching by city:", error);
+      throw error; 
+    }
   };
 
-  const handleSearch = () => {
-    // Add your actual search logic here
-    console.log(`Searching for "${searchTerm}" near "${locationTerm}"`);
+  const handleInter = async () => {
+    try {
+      await handleNameSearch();
+      await handleCitySearch(city);
+
+      data3 = data1.filter((item1) =>
+        data2.some((item2) => item1.lawyer_id === item2.lawyer_id)
+      );
+      console.log(data3);
+      setSearchResults(data3)
+      navigate("/searchpage")
+    } catch (error) {
+      console.error("Error during intersection:", error);
+    }
   };
+
+  
+  
 
   return (
     <>
@@ -38,8 +85,9 @@ function Search() {
                 className='ml-2 w-80 h-full bg-transparent outline-none'
                 type="text"
                 placeholder='Search for your lawyer'
-                value={searchTerm}
-                onChange={handleSearchChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                
               />
             </div>
             <div className='rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg'>
@@ -48,20 +96,24 @@ function Search() {
                 className='ml-2 w-80 h-full bg-transparent outline-none'
                 type="text"
                 placeholder='Search for location'
-                value={locationTerm}
-                onChange={handleLocationChange}
+                value={city}
+              onChange={(e) => setCity(e.target.value)}
               />
             </div>
             <button
-              className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 place-items-center'
-              onClick={handleSearch}
+              className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 w-44 hover:border-0 h-10 place-items-center'
+              onClick={() => {
+                handleInter();
+              }}
+              onKeyDown={() => {
+                handleInter();}}
             >
               Search
             </button>
           </div>
         </div>
         <div className='text-black text-3xl text-left p-12 font-bold'>
-          <span>Your search for "<span>{searchTerm}</span>" near "<span>{locationTerm}</span>"</span>
+          <span>Your search for "{name}"<span></span> near "{city} "<span></span>"</span>
         </div>
         <div>
           <Slider></Slider>

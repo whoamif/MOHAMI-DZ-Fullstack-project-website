@@ -10,6 +10,7 @@ urlpatterns = [
     
     #path('search/', LawyerSearchView.as_view(), name='lawyer-search'),
     path('search/',views.LawyerSearchView.as_view()),
-    path('searchAdr/',views.LawyerSearchViewAdr.as_view()), 
+    path('searchAdr/',views.LawyerSearchViewAdr.as_view()),
+    path('searchDomains/',views.LawyerSearchViewDomain.as_view()),
 
 ]

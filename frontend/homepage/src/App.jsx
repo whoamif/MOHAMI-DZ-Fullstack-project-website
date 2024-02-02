@@ -1,8 +1,7 @@
 import "./App.css";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
 import i18n from "../i18n";
-import { useTranslation } from "react-i18next"; // Import useTranslation hook
+import { useTranslation } from "react-i18next"; 
 import axios from "axios";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
@@ -12,10 +11,66 @@ import {
   faMagnifyingGlass,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { searchContext } from "./RoutesApp";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
-  const { t, i18n } = useTranslation(); // Use useTranslation hook to access translation function
-  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
+  const { t } = useTranslation();
+  const navigate = useNavigate()
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  let data1 = [];
+  let data2 = [];
+  let data3 = [];
+  const { setSearchResults, searchResults } = useContext(searchContext)
+
+  const handleNameSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/search/?search=${encodeURIComponent(name)}`
+      );
+      data1 = response.data;
+      console.log(data1);
+
+      return data1;
+    } catch (error) {
+      console.error("Error searching by name:", error);
+      throw error; 
+    }
+  };
+
+  const handleCitySearch = async (city) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/searchAdr/?search=${encodeURIComponent(
+          city
+        )}`
+      );
+      data2 = response.data;
+      console.log(data2);
+      return data2;
+    } catch (error) {
+      console.error("Error searching by city:", error);
+      throw error; 
+    }
+  };
+
+  const handleInter = async () => {
+    try {
+      await handleNameSearch();
+      await handleCitySearch(city);
+
+      data3 = data1.filter((item1) =>
+        data2.some((item2) => item1.lawyer_id === item2.lawyer_id)
+      );
+      console.log(data3);
+      setSearchResults(data3)
+      navigate("/searchpage")
+    } catch (error) {
+      console.error("Error during intersection:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-screen min-h-screen">
       <NavBar />
@@ -41,6 +96,9 @@ const App = () => {
               className="ml-2 w-80 h-full bg-transparent outline-none"
               type="text"
               placeholder={t("searchForLawyer")}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              
             />
           </div>
           <div className="rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg">
@@ -49,9 +107,18 @@ const App = () => {
               className="ml-2 w-80 h-full bg-transparent outline-none"
               type="text"
               placeholder={t("searchForLocation")}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <button className="rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 w-32 place-items-center">
+          <button
+            className="rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 w-32 place-items-center"
+            onClick={() => {
+              handleInter();
+            }}
+            onKeyDown={() => {
+              handleInter();}}
+          >
             {t("search")}
           </button>
         </div>
@@ -68,39 +135,52 @@ const App = () => {
         </p>
         <div className="flex place-self-start p-10">
           <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <a
+            <div
               className="text-black hover:underline hover:text-black font-thin"
-              href=""
+              value={city}
+              onClick={() => {
+                setCity("Adrar");
+                handleCitySearch();
+              }}
             >
               1.{t("Adrar")}
-            </a>
+            </div>
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""
+              value={city}
+              onClick={() => {
+                setCity("Chlef");
+                handleCitySearch();
+              }}
             >
               2.{t("Chlef")}
             </a>
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""
+              value={city}
             >
               3.{t("Laghouat")}
             </a>
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""
+              value={city}
             >
               4.{t("Oum El Bouaghi")}
             </a>
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""
+              value={city}
             >
               5. {t("Batna")}
             </a>
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""
+              value={city}
             >
               6. {t("Béjaïa")}
             </a>
@@ -217,13 +297,17 @@ const App = () => {
               {" "}
               22. {t("Sidi Bel Abbès")}
             </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
+            <div
+              className="text-black hover:underline hover:text-black font-thin cursor:pointer"
+              onClick={() => {
+                
+                handleCitySearch("Annab");
+                
+              }}
             >
-              {" "}
               23. {t("Annaba")}
-            </a>
+            </div>
+
             <a
               className="text-black hover:underline hover:text-black font-thin"
               href=""

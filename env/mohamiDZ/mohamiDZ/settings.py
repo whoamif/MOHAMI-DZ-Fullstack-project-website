@@ -44,7 +44,12 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     #above are hiba changes 
+
+        #'adminlte',
     'django.contrib.admin',
+
+
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -146,7 +151,7 @@ USE_I18N = True
 USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Add your React app's URL
+    "http://localhost:5173",  # Add your React app's URL
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -203,7 +208,9 @@ DJOSER = {
         'current_user' : 'accounts.serializers.UserCreateSerializer',
         'user_delete' : 'djoser.serializers.UserDeleteSerializer',
     }
+    
 }
+
 
 SOACIAL_AUTH_GOOGLE_OAUTH2_KEY = "669693983148-3i3tmnnqmrhok6th8po2e05qpg5duhnp.apps.googleusercontent.com"
 SOACIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"

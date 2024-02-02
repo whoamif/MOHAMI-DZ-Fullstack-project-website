@@ -1,5 +1,6 @@
 from django.apps import AppConfig
-from suit.apps import DjangoSuitConfig
+
+#from suit import DjangoSuitConfig
 
 class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

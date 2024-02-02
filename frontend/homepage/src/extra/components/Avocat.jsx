@@ -1,16 +1,20 @@
 import profilavocat from "../components/av.jpeg";
+import React, { useContext,useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Message from "../components/btnmessage";
 import CircleRating from "./CircleRating";
 import Rendezvous from "./rendezvous";
-import React, { useState } from "react";
 import Horaire from "./horaire";
 import CommentSystem from "./commentsystem";
 import NavBar from "../../NavBar";
 import Footer from "../../Footer";
+import { Link,useParams } from "react-router-dom";
 
 const Avocat = () => {
   const [showForm, setShowForm] = useState(false);
+  const [value, setValue] = React.useState(2);
+  const { setSearchResults, searchResults } = useContext(searchContext);
+  const { userId } = useParams();
 
   const handleAppointmentButtonClick = () => {
     setShowForm(true);
