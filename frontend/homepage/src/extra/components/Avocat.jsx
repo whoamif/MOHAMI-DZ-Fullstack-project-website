@@ -1,4 +1,3 @@
-import profilavocat from "../components/av.jpeg";
 import React, { useContext, useEffect, useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import CircleRating from "./CircleRating";
@@ -39,8 +38,8 @@ const Avocat = ({ lawyers }) => {
       <Toaster position="top-right" />
       <div className="flex gap-5 p-12">
         <img
-          src={profilavocat}
-          className="h-24 w-24 rounded-md mb-4 lg:mb-0 lg:mr-4 lg:order-1"
+          src={lawyer?.profile_pic}
+          className="h-44 w-44 rounded-md mb-4 lg:mb-0 lg:mr-4 lg:order-1"
         />
 
         <div className="text-left lg:text-left lg:w-1/2 lg:order-2 sm:w-full">
