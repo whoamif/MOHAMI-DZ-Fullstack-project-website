@@ -94,8 +94,8 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gl_data',        # Your MySQL database name
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',  # Your MySQL username
         'PASSWORD': '',  # Your MySQL password
         'HOST': 'localhost',      # Your MySQL server address
@@ -144,7 +144,7 @@ USE_TZ = True
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Add your React app's URL
+    "http://localhost:5173",  # Add your React app's URL
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
