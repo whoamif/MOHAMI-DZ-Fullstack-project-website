@@ -95,7 +95,7 @@ const App = () => {
     return chunkedArr;
 }
   return (
-    <div className="flex flex-col w-screen min-h-screen">
+    <div className="flex flex-col w-screen min-h-screen ">
       <NavBar />
       <div></div>
       <div
@@ -109,7 +109,7 @@ const App = () => {
           <p className="text-3xl">{t("legalExcellence")}</p>
           <p className="text-2xl font-thin">{t("trustedAdvocates")}</p>
         </div>
-        <div className="flex gap-2 place-items-baseline ml-10 mt-20">
+        <div className="flex gap-2 place-items-baseline ml-10 mt-20 md:">
           <div className="rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg">
             <FontAwesomeIcon
               className="text-orange-500"

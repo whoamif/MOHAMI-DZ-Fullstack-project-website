@@ -400,7 +400,7 @@ function NavBar() {
         <a className="text-black hover:text-orange-500" href="">
           {t("Home")}
         </a>
-        <a className="text-black hover:text-orange-500 cursor-pointer" href="" >
+        <a className="text-black hover:text-orange-500 cursor-pointer" href="mailto:admin" >
           {t("Contact US")}
         </a>
       </div>

@@ -1,11 +1,33 @@
+import emailjs from 'emailjs-com';
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 const Rendezvous = ({ handleClose }) => {
+  const Submit = (e) => {
+    e.preventDefault();
+    
+    emailjs.send('service_vag4nxg', 'template_ssbps7h', {
+      from_name: formData.name,
+      reply_to: formData.email,
+      message: formData.message,
+    }, 'YOUR_USER_ID')
+    .then((response) => {
+      console.log('E-mail envoyé avec succès!', response);
+      handleClose();
+      toast.success('Rendez-vous pris, merci!');
+    }, (error) => {
+      console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
+      toast.error('Erreur lors de l\'envoi de l\'e-mail. Veuillez réessayer.');
+    });
+  };
+  
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
 
   const handleChange = (e) => {
     setFormData({
@@ -24,7 +46,7 @@ const Rendezvous = ({ handleClose }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 bg-red p-4 overflow-y-auto backdrop-blur">
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-red p-4 overflow-y-auto backdrop-blur z-40">
       <div className="max-w-lg mx-auto p-10 bg-white shadow-md">
         <h2 className="text-2xl font-bold mb-4">
           Formulaire de prise de rendez-vous
@@ -35,6 +57,7 @@ const Rendezvous = ({ handleClose }) => {
             <label
               htmlFor="name"
               className="block text-sm font-medium text-gray-600"
+              
             >
               Nom et prénom
             </label>
@@ -45,6 +68,7 @@ const Rendezvous = ({ handleClose }) => {
               value={formData.name}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 w-full"
+              required
             />
           </div>
 
@@ -62,6 +86,7 @@ const Rendezvous = ({ handleClose }) => {
               value={formData.email}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 w-full"
+              required
             />
           </div>
 
@@ -69,6 +94,7 @@ const Rendezvous = ({ handleClose }) => {
             <label
               htmlFor="message"
               className="block text-sm font-medium text-gray-600"
+              required
             >
               Message
             </label>
