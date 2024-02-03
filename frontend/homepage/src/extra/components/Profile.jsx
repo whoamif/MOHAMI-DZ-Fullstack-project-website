@@ -81,8 +81,9 @@ const ProfilePage = () => {
             deleteComment={deleteComment}
           />
         )}
+
       </div>
-      <Footer />
+      
     </div>
   );
 };
@@ -123,7 +124,7 @@ const UserProfileSection = ({ formData, setFormData }) => {
 
   return (
     <div className="ml-80">
-      <h2 className="text-3xl font-bold mb-4">User Profile</h2>
+      <h2 className="text-3xl font-bold mb-4">le profile de l'utilisateur</h2>
       <div className="flex flex-col items-center mb-4">
         <div className="w-32 h-32 bg-gray-400 rounded-full overflow-hidden mb-4 relative pt-12">
           {formData.imageUrl ? (
@@ -148,14 +149,14 @@ const UserProfileSection = ({ formData, setFormData }) => {
           className="text-orange-500 border-1 border-orange-500 px-4 py-2 rounded-md mb-8"
           onClick={handleEditClick}
         >
-          Edit
+          modifier
         </button>
       </div>
 
       {editing ? (
         <div>
           <label htmlFor="name" className="mb-2">
-            Name:
+            Nom et prenom :
           </label>
           <input
             type="text"
@@ -179,7 +180,7 @@ const UserProfileSection = ({ formData, setFormData }) => {
           />
 
           <label htmlFor="phone" className="mb-2">
-            Phone:
+            Num de tel:
           </label>
           <input
             type="tel"
@@ -196,7 +197,7 @@ const UserProfileSection = ({ formData, setFormData }) => {
                 className="text-orange-500 border-1 border-orange-500 px-4 py-2 rounded-md "
                 onClick={handleSaveClick}
               >
-                Save Changes
+                sauvgarder les changements 
               </button>
             </div>
           )}
@@ -204,7 +205,7 @@ const UserProfileSection = ({ formData, setFormData }) => {
       ) : (
         <div className="text-left flex flex-col gap-2 ml-44">
           <p className="">
-            <span className="font-bold text-xl mr-2">Name:</span>{" "}
+            <span className="font-bold text-xl mr-2">Nom et prenom :</span>{" "}
             {formData.name}
           </p>
           <p className="">
@@ -212,7 +213,7 @@ const UserProfileSection = ({ formData, setFormData }) => {
             {formData.email}
           </p>
           <p className="">
-            <span className="font-bold text-xl mr-2">Phone:</span>{" "}
+            <span className="font-bold text-xl mr-2">num de telephone:</span>{" "}
             {formData.phone}
           </p>
         </div>
@@ -251,9 +252,9 @@ const RecentCommentSection = ({
   };
 
   return (
-    <div className=" ">
-      <h2 className="text-xl font-bold  flex mb-8 ">Recent Comments</h2>
-      <ul className="space-y-4">
+    <div className=" w-screen m-auto">
+      <h2 className="text-xl font-bold  flex mb-8 ">Commentaires récents"</h2>
+      <ul className="">
         {comments.map((comment) => (
           <li key={comment.id} className="mb-4">
             <div className="flex flex-col text-left">
@@ -266,18 +267,18 @@ const RecentCommentSection = ({
                       onChange={(e) => setEditedCommentText(e.target.value)}
                       className="w-full p-2 border mb-2 md:mr-2"
                     />
-                    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                    <div className="flex flex-col ">
                       <button
                         className="border-1 border-orange-500 rounded-md px-4"
                         onClick={() => handleSaveEdit(comment.id)}
                       >
-                        Save
+                        sauvgarder
                       </button>
                       <button
                         className="border-1 border-orange-500 rounded-md px-4"
                         onClick={handleCancelEdit}
                       >
-                        Cancel
+                        annuler
                       </button>
                     </div>
                   </>
@@ -291,14 +292,14 @@ const RecentCommentSection = ({
                           handleEditComment(comment.id, comment.text)
                         }
                       >
-                        Update
+                        modifer
                       </button>
                       <button
                         className="text-red-500 px-4 border-2 border-red-500 rounded-md hover:bg-red-200"
                         onClick={() => handleDeleteComment(comment.id)}
                       >
-                        Delete
-                      </button>
+                        supprimer
+                          </button>
                     </div>
                   </>
                 )}
@@ -308,7 +309,10 @@ const RecentCommentSection = ({
         ))}
       </ul>
     </div>
+    
+    
   );
+
 };
 
 export default ProfilePage;
