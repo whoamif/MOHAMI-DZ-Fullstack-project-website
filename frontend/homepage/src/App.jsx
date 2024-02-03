@@ -156,7 +156,7 @@ const App = () => {
     <p className="ml-70 font-bold text-black text-3xl text-left pl-16">
         {t("searchByCity")}
     </p>
-    <div className="flex place-self-start p-10">
+    <div className="flex place-self-start p-10 m-auto">
         {chunkArray(cities, 10).map((group, groupIndex) => (
             <div key={groupIndex} className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
                 {group.map((city, index) => (

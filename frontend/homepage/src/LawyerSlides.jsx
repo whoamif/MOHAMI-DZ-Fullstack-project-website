@@ -28,7 +28,7 @@ function LawyerSlides() {
       slidesPerView={3}
       navigation
       
-      className=''
+      className='m-auto w-5/6 flex '
      
     >
       <SwiperSlide>
