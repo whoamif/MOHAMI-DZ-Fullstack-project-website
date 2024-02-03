@@ -6,7 +6,7 @@
 .swiper-button-prev {
   font-family: swiper-icons;
   color: orange;
- 
+  right: 10%;
   text-transform: none !important;
   letter-spacing: 0;
   font-variant: initial;
@@ -14,10 +14,9 @@
   line-height: 1;
 }
 .swiper-button-next{
-  
   font-family: swiper-icons;
-  color: orange;
   padding-top:4px;
+  left: 10%;
   text-transform: none !important;
   letter-spacing: 0;
   font-variant: initial;
@@ -25,3 +24,4 @@
   color: orange;
 
 }
+

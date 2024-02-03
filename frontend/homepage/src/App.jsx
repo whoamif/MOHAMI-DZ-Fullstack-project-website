@@ -12,6 +12,22 @@ import { searchContext } from "./RoutesApp";
 import { useNavigate } from "react-router-dom";
 
 const App = () => {
+  const cities = [
+    "Adrar", "Chlef", "Laghouat", "Oum El Bouaghi", "Batna",
+    "Béjaïa", "Biskra", "Béchar", "Blida", "Bouïra",
+    "Tamanrasset", "Tébessa", "Tlemcen", "Tiaret", "Tizi Ouzou",
+    "Algiers", "Djelfa", "Jijel", "Sétif", "Saïda",
+    "Skikda", "Sidi Bel Abbès", "Annaba", "Guelma", "Constantine",
+    "Médéa", "Mostaganem", "M'Sila", "Mascara", "Ouargla",
+    "Oran", "El Bayadh", "Illizi", "Bordj Bou Arréridj", "Boumerdès",
+    "El Tarf", "Tindouf", "Tissemsilt", "El Oued", "Khenchela",
+    "Souk Ahras", "Tipaza", "Mila", "Aïn Defla", "Naâma",
+    "Aïn Témouchent", "Ghardaïa", "Relizane", "Timimoun", "Bordj Badji Mokhtar",
+    "Ouled Djellal", "Béni Abbès", "Ain Salah", "Ain Guezzam", "Touggourt",
+    "Djanet", "El M'Ghair", "El Menia"
+];
+
+
   const { t } = useTranslation();
   const navigate = useNavigate()
   const [name, setName] = useState("");
@@ -68,6 +84,15 @@ const App = () => {
     }
   };
 
+  function chunkArray(array, size) {
+    const chunkedArr = [];
+    let index = 0;
+    while (index < array.length) {
+        chunkedArr.push(array.slice(index, size + index));
+        index += size;
+    }
+    return chunkedArr;
+}
   return (
     <div className="flex flex-col w-screen min-h-screen">
       <NavBar />
@@ -120,447 +145,37 @@ const App = () => {
           </button>
         </div>
       </div>
+      
       <div className="w-screen min-h-96 mt-32 flex flex-col gap-20 ">
-        <p className="text-4xl text-black drop-shadow-2xl">
-          {t("preferredAvocat")}
-        </p>
-        <div className="flex justify-center items-center w-4/5 m-auto">
-          <LawyerSlides />
-        </div>
-        <p className="ml-70 font-bold text-black text-3xl text-left pl-16">
-          {t("searchByCity")}
-        </p>
-        <div className="flex place-self-start p-10">
-          <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <div
-              className="text-black hover:underline hover:text-black font-thin"
-              value={city}
-              onClick={() => {
-                setCity("Adrar");
-                handleCitySearch();
-              }}
-            >
-              1.{t("Adrar")}
+    <p className="text-4xl text-black drop-shadow-2xl">
+        {t("preferredAvocat")}
+    </p>
+    <div className="flex justify-center items-center w-4/5 m-auto">
+        <LawyerSlides />
+    </div>
+    <p className="ml-70 font-bold text-black text-3xl text-left pl-16">
+        {t("searchByCity")}
+    </p>
+    <div className="flex place-self-start p-10">
+        {chunkArray(cities, 10).map((group, groupIndex) => (
+            <div key={groupIndex} className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
+                {group.map((city, index) => (
+                    <div
+                        key={index}
+                        className="text-black hover:underline hover:text-black font-thin cursor-pointer"
+                        onClick={() => {
+                            setCity(city);
+                            handleCitySearch(city);
+                        }}
+                    >
+                        {index + 1 + groupIndex * 10}. {t(city)}
+                    </div>
+                ))}
             </div>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-              value={city}
-              onClick={() => {
-                setCity("Chlef");
-                handleCitySearch();
-              }}
-            >
-              2.{t("Chlef")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-              value={city}
-            >
-              3.{t("Laghouat")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-              value={city}
-            >
-              4.{t("Oum El Bouaghi")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-              value={city}
-            >
-              5. {t("Batna")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-              value={city}
-            >
-              6. {t("Béjaïa")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              7. {t("Biskra")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              8. {t("Béchar")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              9. {t("Blida")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              10. {t("Bouïra")}
-            </a>
-          </div>
-          <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              11. {t("Tamanrasset")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              12. {t("Tébessa")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              13. {t("Tlemcen")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              14. {t("Tiaret")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              15. {t("Tizi Ouzou")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              16. {t("Algiers")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              17. {t("Djelfa")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              18. {t("Jijel")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              19. {t("Sétif")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              20. {t("Saïda")}
-            </a>
-          </div>
+        ))}
+    </div>
+</div>
 
-          <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              21. {t("Skikda")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              22. {t("Sidi Bel Abbès")}
-            </a>
-            <div
-              className="text-black hover:underline hover:text-black font-thin cursor:pointer"
-              onClick={() => {
-                
-                handleCitySearch("Annaba");
-                
-              }}
-            >
-              23. {t("Annaba")}
-            </div>
-
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              24. {t("Guelma")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              25. {t("Constantine")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              26. {t("Médéa")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              27. {t("Mostaganem")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              28. {t("M'Sila")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              29. {t("Mascara")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              30. {t("Ouargla")}
-            </a>
-          </div>
-
-          <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              31. {t("Oran")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              32. {t("El Bayadh")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              33. {t("Illizi")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              34. {t("Bordj Bou Arréridj")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              35. {t("Boumerdès")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              36. {t("El Tarf")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              37. {t("Tindouf")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              38. {t("Tissemsilt")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              39. {t("El Oued")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              40. {t("Khenchela")}
-            </a>
-          </div>
-          <div className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2">
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              41. {t("Souk Ahras")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              42. {t("Tipaza")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              43. {t("Mila")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              44. {t("Aïn Defla")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              45. {t("Naâma")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              46. {t("Aïn Témouchent")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              47. {t("Ghardaïa")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              48. {t("Relizane")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              49. {t("Timimoun")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              50. {t("Bordj Badji Mokhtar")}
-            </a>
-          </div>
-          <div className="flex flex-col text-black text-xl p-4 place-self-start  text-left gap-2">
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              51. {t("Ouled Djellal")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              52. {t("Béni Abbès")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              53. {t("Ain Salah")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              54. {t("Ain Guezzam")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              55. {t("Touggourt")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              56. {t("Djanet")}
-            </a>
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              57. {t("El M'Ghair")}
-            </a>
-
-            <a
-              className="text-black hover:underline hover:text-black font-thin"
-              href=""
-            >
-              {" "}
-              58. {t("El Menia")}
-            </a>
-          </div>
-        </div>
-      </div>
       <Footer />
     </div>
   );
