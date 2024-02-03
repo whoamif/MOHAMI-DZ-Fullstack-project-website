@@ -1,7 +1,7 @@
 Frontend:
 
 React.js
-Redux
+Axios
 React Router
 Other frontend dependencies...
 
