@@ -51,7 +51,7 @@ function Footer() {
             className="cursor-pointer hover:text-red-500"
             onClick={toggleLanguage}
           >
-            {t("english")}
+            {t("frensh")}
           </p>
         </div>
       </div>

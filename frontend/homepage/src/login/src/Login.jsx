@@ -66,7 +66,7 @@ const Login = () => {
             <img className="w-60 " src="./elements/DZ-Mouhami.svg" alt="" />
           </Link>
           <div className="flex flex-col items-center  gap-5 ">
-            <p className="font-bold text-3xl mt-4">{t("login")}</p>
+            <p className="font-bold text-3xl mt-4">{t("Login")}</p>
             <input
               className="h-10 p-4 border-2 w-80 "
               type="email"
@@ -94,10 +94,10 @@ const Login = () => {
           </div>
           <GoogleLoginButton />
           <div className=" mt-10">
-          {t("noAccou")}
-          n{" "}
+          {t("noAccount")}
+          {" "}
             <Link to={"/signup"} className="text-blue-500" href="">
-            {t("singUp")}
+            {t("signUp")}
              
             </Link>
             

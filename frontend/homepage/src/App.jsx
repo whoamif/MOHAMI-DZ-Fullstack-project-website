@@ -16,7 +16,7 @@ const App = () => {
     "Adrar", "Chlef", "Laghouat", "Oum El Bouaghi", "Batna",
     "Béjaïa", "Biskra", "Béchar", "Blida", "Bouïra",
     "Tamanrasset", "Tébessa", "Tlemcen", "Tiaret", "Tizi Ouzou",
-    "Algiers", "Djelfa", "Jijel", "Sétif", "Saïda",
+    "Alger", "Djelfa", "Jijel", "Sétif", "Saïda",
     "Skikda", "Sidi Bel Abbès", "Annaba", "Guelma", "Constantine",
     "Médéa", "Mostaganem", "M'Sila", "Mascara", "Ouargla",
     "Oran", "El Bayadh", "Illizi", "Bordj Bou Arréridj", "Boumerdès",
@@ -26,6 +26,7 @@ const App = () => {
     "Ouled Djellal", "Béni Abbès", "Ain Salah", "Ain Guezzam", "Touggourt",
     "Djanet", "El M'Ghair", "El Menia"
 ];
+
 
 
   const { t } = useTranslation();
