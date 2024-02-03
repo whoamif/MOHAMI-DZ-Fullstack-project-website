@@ -1,7 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import RoutesApp from './RoutesApp.jsx'
+import React from 'react';
+import { jsxDEV } from "react/jsx-dev-runtime";
+import "./index.css";
+import RoutesApp from "./RoutesApp.jsx";
+import ReactDOM from 'react-dom';
 import i18n from '../i18n.js'
 import { I18nextProvider } from 'react-i18next'; // Import I18nextProvider
 

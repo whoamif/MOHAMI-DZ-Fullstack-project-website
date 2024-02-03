@@ -1,37 +1,41 @@
-import {useState}from 'react'
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 const Rendezvous = ({ handleClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleClose();
- 
   };
 
   const handleSave = () => {
- 
     console.log("Données enregistrées :", formData);
   };
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 bg-red p-4 overflow-y-auto backdrop-blur">
       <div className="max-w-lg mx-auto p-10 bg-white shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Formulaire de prise de rendez-vous</h2>
-
+        <h2 className="text-2xl font-bold mb-4">
+          Formulaire de prise de rendez-vous
+        </h2>
+        <Toaster position="top-right" />
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-600"
+            >
               Nom et prénom
             </label>
             <input
@@ -45,7 +49,10 @@ const Rendezvous = ({ handleClose }) => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-600"
+            >
               Adresse e-mail
             </label>
             <input
@@ -59,7 +66,10 @@ const Rendezvous = ({ handleClose }) => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="message" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-gray-600"
+            >
               Message
             </label>
             <textarea
@@ -72,22 +82,20 @@ const Rendezvous = ({ handleClose }) => {
             ></textarea>
           </div>
 
-         
-
-
-
-        <div className="text-center mt-4">
-          <button type="button" className=" text-orange-500 p-2 rounded" onClick={handleSave}>
-            prendre rendez-vous
-          </button>
-        </div>
-
-          
+          <div className="text-center mt-4">
+            <button
+              type="submit"
+              onClick={() => {
+                handleClose();
+                toast.success("rndv pris merci!");
+              }}
+              className=" text-orange-500 p-2 rounded"
+            >
+              prendre rendez-vous
+            </button>
+          </div>
         </form>
 
-        
-
-      
         <button onClick={handleClose} className="mt-4 text-gray-500 w-full">
           Fermer
         </button>
