@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import Footer from './Footer';
+import Footer from '../../Footer.jsx';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next"; 
 
@@ -28,7 +28,7 @@ const Singupuser = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [repassword, setrep] = useState('');
 
   const [isLawyer, setIsLawyer] = useState(false); // State to track whether the user is a lawyer or not
 
@@ -39,14 +39,15 @@ const Singupuser = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handlerep = (e) => {
+    setrep(e.target.value);
   };
 
   const handleSignup = () => {
     const data = {
       email: email,
       isLawyer :false,
+      repassword : repassword,
       password: password,
       
       
@@ -79,10 +80,10 @@ const Singupuser = () => {
             />
              <input
               className='h-10 p-4 border-2 w-80 '
-              type="name"
-              placeholder={t("name")}
-              value={name}
-              onChange={handleName}
+              type="password"
+              placeholder={t("password")}
+              value={repassword}
+              onChange={handlerep}
             />
             <input
               className='h-10 p-4 border-2 w-80 '
@@ -107,7 +108,7 @@ const Singupuser = () => {
         </div>
         <div className='bg-cover bg-center w-1/2' style={{ backgroundImage: `url('./elements/bgright.svg')`, height: '100%'}}></div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
