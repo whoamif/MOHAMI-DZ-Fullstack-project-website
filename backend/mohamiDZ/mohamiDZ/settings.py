@@ -41,23 +41,11 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-<<<<<<< Updated upstream
     #'oauth2_provider',  # add it to remove elements in the admin panel
     'jazzmin',
 # to customize the admin panel
-=======
-
-
-    #'oauth2_provider',  # add it to remove elements in the admin panel
-    #'jazzmin',
-# to customize the admin panel
-    'suit',
-
->>>>>>> Stashed changes
     'accounts',
     'djoser',
-    
-  
     'rest_framework',
     'corsheaders',  # need for linking with React
     'social_django',
@@ -112,22 +100,12 @@ WSGI_APPLICATION = 'mohamiDZ.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< Updated upstream
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gl_data',        # Your MySQL database name
         'USER': 'root',  # Your MySQL username
         'PASSWORD': '',  # Your MySQL password
         'HOST': 'localhost',      # Your MySQL server address
         'PORT': '3306',           # Your MySQL server port
-=======
-        'ENGINE': 'django.db.backends.sqlite3',
-
-        'NAME': BASE_DIR / 'db.sqlite3',
-
-        'NAME': BASE_DIR /'db.sqlite3',        # Your MySQL database name
-        
-
->>>>>>> Stashed changes
     }
 }
 #email
@@ -137,7 +115,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'dz.mohami.lawyer@gmail.com'
+EMAIL_HOST_USER = 'dz.mohami.lawyer@gmail.com' #12345
 EMAIL_HOST_PASSWORD = 'hccs walh zwyo zzoa'
 
 # Password validation
@@ -229,14 +207,12 @@ DJOSER = {
     }
 }
 
-SOACIAL_AUTH_GOOGLE_OAUTH2_KEY = "669693983148-3i3tmnnqmrhok6th8po2e05qpg5duhnp.apps.googleusercontent.com"
-SOACIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
-SOACIAL_AUTH_GOOGLE_OAUTH2_SCOOPE = ['https://www.googleapi.com/auth/userinfo.email', 'https://www.googleapi.com/auth/userinfo.profile', 'openid']
-SOACIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "669693983148-3i3tmnnqmrhok6th8po2e05qpg5duhnp.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+
 
 AUTH_USER_MODEL = "accounts.UserAccount"
 
-<<<<<<< Updated upstream
 JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
-=======
->>>>>>> Stashed changes
