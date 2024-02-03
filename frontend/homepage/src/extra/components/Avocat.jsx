@@ -104,7 +104,7 @@ const Avocat = ({ lawyers }) => {
 
       <div className="flex justify-center"></div>
       <CommentSystem />
-
+        <div className="h-24"></div>
       <Footer />
     </div>
   );

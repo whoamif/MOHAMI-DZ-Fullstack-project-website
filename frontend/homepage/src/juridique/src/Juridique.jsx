@@ -35,7 +35,7 @@ function App() {
       <input
         className='ml-2 w-80 h-full bg-transparent outline-none'
         type="text"
-        placeholder='Search for your lawyer'
+        placeholder={t("searchForLawyer")}
       />
       </div>
      
@@ -46,11 +46,11 @@ function App() {
         <input
           className='ml-2 w-80 h-full bg-transparent outline-none'
           type="text"
-          placeholder='Search for location'
+          placeholder={t("searchForLocation")}
         />
       </div>
 
-      <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 place-items-center'>
+      <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 place-items-center w-36'>
         
         {t("search")}
       </button>
