@@ -36,13 +36,13 @@ INSTALLED_APPS = [
         #'oauth2_provider',  # add it to remove elements in the admin panel
     #'jazzmin',# to customize the admin panel
 
-    'accounts',
-    'djoser',
-    'rest_framework',
+    #'accounts',
+    #'djoser',
+    
     'corsheaders',  # need for linking with React
-    'social_django',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
+    #'social_django',
+    #'rest_framework_simplejwt',
+    #'rest_framework_simplejwt.token_blacklist',
     #above are hiba changes 
 
         #'adminlte',
@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'search',
+    'register',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -217,6 +220,6 @@ SOACIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
 SOACIAL_AUTH_GOOGLE_OAUTH2_SCOOPE = ['https://www.googleapi.com/auth/userinfo.email', 'https://www.googleapi.com/auth/userinfo.profile', 'openid']
 SOACIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
-AUTH_USER_MODEL = "accounts.UserAccount"
+#AUTH_USER_MODEL = "accounts.UserAccount"
 
 #JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
