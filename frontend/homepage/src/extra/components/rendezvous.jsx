@@ -16,6 +16,7 @@ const Rendezvous = ({ handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.success("rndv pris merci!");
     handleClose();
   };
 
@@ -24,7 +25,7 @@ const Rendezvous = ({ handleClose }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 bg-red p-4 overflow-y-auto backdrop-blur">
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-red p-4 overflow-y-auto backdrop-blur ">
       <div className="max-w-lg mx-auto p-10 bg-white shadow-md">
         <h2 className="text-2xl font-bold mb-4">
           Formulaire de prise de rendez-vous
@@ -45,6 +46,7 @@ const Rendezvous = ({ handleClose }) => {
               value={formData.name}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 w-full"
+              required
             />
           </div>
 
@@ -62,6 +64,7 @@ const Rendezvous = ({ handleClose }) => {
               value={formData.email}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 w-full"
+              required
             />
           </div>
 
@@ -79,6 +82,7 @@ const Rendezvous = ({ handleClose }) => {
               value={formData.message}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 w-full"
+              required
             ></textarea>
           </div>
 
@@ -86,8 +90,6 @@ const Rendezvous = ({ handleClose }) => {
             <button
               type="submit"
               onClick={() => {
-                handleClose();
-                toast.success("rndv pris merci!");
               }}
               className=" text-orange-500 p-2 rounded"
             >

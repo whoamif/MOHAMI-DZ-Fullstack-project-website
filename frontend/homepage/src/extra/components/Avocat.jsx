@@ -4,7 +4,6 @@ import CircleRating from "./CircleRating";
 import Rendezvous from "./rendezvous";
 import Horaire from "./horaire";
 import CommentSystem from "./commentsystem";
-/* import Map from "../../map"; */
 import NavBar from '../../NavBar';
 import Footer from "../../Footer";
 import { Link, useParams } from "react-router-dom";
@@ -34,7 +33,7 @@ const Avocat = ({ lawyers }) => {
 
   return (
     <div className=" w-screen m-auto gap-5 flex flex-col">
-      <NavBar />
+      <NavBar/>
       <Toaster position="top-right" />
       <div className="flex gap-5 p-12">
         <img
@@ -69,7 +68,7 @@ const Avocat = ({ lawyers }) => {
       <div className="flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 md:space-x-4 mx-auto mt-4">
         <div className="md:order-1">
         </div>
-        <div className="md:order-1">
+        <div className="md:order-1 z-100">
           <button
             onClick={handleAppointmentButtonClick}
             className="bg-orange-500 py-2 px-8 md:px-16 rounded text-white"

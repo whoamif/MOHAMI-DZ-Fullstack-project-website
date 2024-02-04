@@ -63,6 +63,7 @@ function Search() {
       setSearchResults(data3)
       navigate("/searchpage")
     } catch (error) {
+      
       console.error("Error during intersection:", error);
     }
   };

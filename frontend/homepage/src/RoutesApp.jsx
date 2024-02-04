@@ -10,6 +10,7 @@ import Singupuser from "./singupuser/src/Singupuser.jsx";
 import Singuplawyer from "./singuplawyer/src/Singuplawyer.jsx";
 import { useState, createContext, useEffect } from "react";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 export const searchContext = createContext();
 const RoutesApp = () => {
@@ -39,7 +40,8 @@ const RoutesApp = () => {
   return (
     <searchContext.Provider
       value={{ searchResults, setSearchResults, setLawyers, lawyers }}
-    >
+    >          <Toaster position="top-right" />
+
       <BrowserRouter>
         <Routes>
           <Route path={"/avocat/:id"} element={<Avocat lawyers={lawyers} />}></Route>

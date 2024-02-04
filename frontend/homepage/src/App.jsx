@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { searchContext } from "./RoutesApp";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const App = () => {
   const cities = [
@@ -107,6 +108,7 @@ const App = () => {
           city
         )}`
       );
+      
       data2 = response.data;
       console.log(data2);
       return data2;
@@ -141,6 +143,9 @@ const App = () => {
     }
     return chunkedArr;
   }
+
+  const cityInputRef = useRef(null);
+
   return (
     <div className="flex flex-col w-screen min-h-screen">
       <NavBar />
@@ -173,6 +178,7 @@ const App = () => {
           <div className="rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg">
             <FontAwesomeIcon className="text-orange-500" icon={faLocationDot} />
             <input
+              ref={cityInputRef}
               className="ml-2 w-80 h-full bg-transparent outline-none"
               type="text"
               placeholder={t("searchForLocation")}
@@ -214,9 +220,11 @@ const App = () => {
                 <div
                   key={index}
                   className="text-black hover:underline hover:text-black font-thin cursor-pointer"
-                  onClick={() => {
-                    handleCitySearch(city);
-                    setCity(city);
+                  onClick={async () => {
+                    setCity(city); // Set the city in the state
+                    cityInputRef.current.focus(); // Focus on the city input field
+                    document.documentElement.scrollIntoView({ behavior: "smooth" });
+
                   }}
                 >
                   {index + 1 + groupIndex * 10}. {t(city)}

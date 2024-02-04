@@ -4,7 +4,7 @@ import { Navigation} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function LawyerSlides() {
   const handleNameSearch = async () => {
@@ -36,8 +36,8 @@ function LawyerSlides() {
           <img className=' ' src="./elements/mohami.png" alt="" />
           <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
           <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
-          <Link to={'/'}>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44'>see the profile</button>
+          <Link to={'/avocat/172'}>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44' href="">see the profile</button>
           </Link>        </div>
       </SwiperSlide>
       <SwiperSlide>
@@ -45,7 +45,7 @@ function LawyerSlides() {
           <img className=' ' src="./elements/mohami2.jpg" alt="" />
           <p className='text-black font-bold'>ME SAMIR SAYAH</p>
           <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
-          <Link to={'/'}>
+          <Link to={'/avocat/494'}>
           <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44'>see the profile</button>
           </Link>
         </div>
@@ -56,7 +56,7 @@ function LawyerSlides() {
           <img className=' ' src="./elements/mohami3.jpeg" alt="" />
           <p className='text-black font-bold'>MAÎTRE KOUCEILA ZERGUINE</p>
           <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
-          <Link to={'/'}>
+          <Link to={'/avocat/375'}>
           <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44'>see the profile</button>
           </Link>        </div>
       </SwiperSlide>
