@@ -6,7 +6,7 @@ from rest_framework import status
 # Add the following in views.py
 
 from rest_framework import generics
-from .models import Lawyers
+from .models import Lawyers,Rendezvous
 from .serializers import LawyersSerializer 
 from django.db import connection 
 from rest_framework import filters
@@ -70,6 +70,29 @@ class LawyerSearchViewDomain(generics.ListCreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
