@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
+from search.models import Lawyers
 # yourapp/read_only_models.py
 
 from django.db import models
@@ -54,6 +54,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     phone_num = models.IntegerField(default=1234567890)
     is_staff = models.BooleanField(default=False)
     is_lawyer = models.BooleanField(default=False)
+    is_added = models.BooleanField(default=False)
 
     objects = UserAccountManager()
     lawyers = LawyerManager()
@@ -61,9 +62,21 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    
+
     def get_full_name(self):
         return self.first_name
     def get_short_name(self):
         return self.first_name
     def __str__(self):
         return self.email
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.is_added and self.is_lawyer:
+            Lawyers.objects.create(
+                lawyername=self.get_full_name(),
+                email=self.email,
+                # Add other fields accordingly
+            )

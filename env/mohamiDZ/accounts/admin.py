@@ -1,9 +1,16 @@
 # yourapp/admin.py
 
 from django.contrib import admin
-from .models import Lawyer
+from .models import UserAccount,Lawyer
 
-class LawyerAdmin(admin.ModelAdmin):
-    list_display = ('lawyername', 'email', 'Phn_number')  # Specify the fields to display in the list view
+# admin.py in your useraccount app
 
-admin.site.register(Lawyer, LawyerAdmin)
+
+class UserAccountAdmin(admin.ModelAdmin):
+    list_display = ['email', 'is_lawyer', 'is_added']  # Add other fields as needed
+class lawAdmin(admin.ModelAdmin):
+    list_display = ['email']
+admin.site.register(UserAccount, UserAccountAdmin)
+admin.site.register(Lawyer, lawAdmin)
+
+

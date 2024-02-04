@@ -6,8 +6,8 @@ import Footer from "../../Footer";
 const ProfilePage = () => {
   const [selectedOption, setSelectedOption] = useState("UserProfile");
   const [formData, setFormData] = useState({
-    name: "Siham",
-    email: "s_aitbaziz@estin.dz",
+    name: "",
+    email: "",
     imageUrl: "",
   });
 

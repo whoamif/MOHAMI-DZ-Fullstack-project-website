@@ -151,6 +151,7 @@ class Lawyers(models.Model):
     edu_bg = models.CharField(max_length=100, blank=True, null=True)
     year_exp = models.IntegerField(db_column='Year_exp', blank=True, null=True)  # Field name made lowercase.
     bio = models.TextField(blank=True, null=True)
+    
 
     
     class Meta:

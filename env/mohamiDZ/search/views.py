@@ -11,6 +11,13 @@ from .serializers import LawyersSerializer
 from django.db import connection 
 from rest_framework import filters
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views import View
+from rest_framework.parsers import JSONParser
+from .models import Rendezvous
+from .serializers import RendezvousSerializer
 
 
 class LawyerSearchView(generics.ListAPIView):
@@ -70,6 +77,48 @@ class LawyerSearchViewDomain(generics.ListCreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+# views.py
+from rest_framework import generics
+from .models import Rendezvous
+from .serializers import RendezvousSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+
+class RendezvousCreateView(APIView):
+
+
+    queryset = Rendezvous.objects.all()
+    serializer_class = RendezvousSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        # Custom logic before saving (if needed)
+        # For example, you can modify data or perform additional checks
+
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

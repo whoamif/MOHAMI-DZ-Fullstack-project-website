@@ -14,6 +14,10 @@ import { Toaster } from "react-hot-toast";
 
 export const searchContext = createContext();
 const RoutesApp = () => {
+  const isTokenAvailable = () => {
+    const token = localStorage.getItem("token");
+    return !!token;
+  };
   const [lawyers, setLawyers] = useState();
   useEffect(() => {
     let data1 = [];
