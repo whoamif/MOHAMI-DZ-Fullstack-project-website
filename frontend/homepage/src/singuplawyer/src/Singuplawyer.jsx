@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import Footer from './Footer';
-import { Link } from 'react-router-dom';
+import Footer from '../../Footer.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next"; 
+import toast from 'react-hot-toast';
 
 const GoogleLoginButton = () => {
   const responseGoogle = (response) => {
@@ -23,12 +24,13 @@ const GoogleLoginButton = () => {
   );
 };
 
-const Singuplawyer = () => {
+const Singupuser = () => {
+  const navigate = useNavigate() 
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [repassword, setrep] = useState('');
 
   const [isLawyer, setIsLawyer] = useState(false); // State to track whether the user is a lawyer or not
 
@@ -39,24 +41,28 @@ const Singuplawyer = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handlerep = (e) => {
+    setrep(e.target.value);
   };
 
   const handleSignup = () => {
     const data = {
       email: email,
-      isLawyer :false,
+      isLawyer: true,
+      repassword: repassword,
       password: password,
-      
-      
     };
-
+  
     axios.post('http://127.0.0.1:8000/auth/users/', data)
       .then(response => {
         console.log(response.data);
+        toast.success("Signup successful wait until the admin approve your registregtion to entre the search engine ");
+        navigate('/');
       })
-      
+      .catch(error => {
+        console.log(error.request.response);
+        toast.error("Error during signup", error.request.response.password);
+      });
   };
 
   const handleCheckboxChange = (e) => {
@@ -79,10 +85,10 @@ const Singuplawyer = () => {
             />
              <input
               className='h-10 p-4 border-2 w-80 '
-              type="name"
-              placeholder={t("name")}
-              value={name}
-              onChange={handleName}
+              type="password"
+              placeholder={t("password")}
+              value={repassword}
+              onChange={handlerep}
             />
             <input
               className='h-10 p-4 border-2 w-80 '
@@ -107,9 +113,9 @@ const Singuplawyer = () => {
         </div>
         <div className='bg-cover bg-center w-1/2' style={{ backgroundImage: `url('./elements/bgright.svg')`, height: '100%'}}></div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
 
-export default Singuplawyer;
+export default Singupuser;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next"; // Ensure this import is at the top level
 
 function Signup() {
-  const { t } = useTranslation(); // Call useTranslation hook inside the functional component
+  const { t } = useTranslation(); 
 
   return (
     <>

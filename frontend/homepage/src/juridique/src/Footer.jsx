@@ -4,7 +4,7 @@ import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-sv
 
 function Footer() {
   return (
-    <div className='flex flex-col bg-custom-bg-color w-screen h-72'>
+    <div className='flex flex-col bg-custom-bg-color w-screen h-72 mb-0  pb-0'>
       <div className='flex  pl-4'>
         <div className='flex flex-col w-1/3 gap-6 items-start ml-5 p-12'>
           <img src="./elements/mouhamilogo.svg" alt="" />

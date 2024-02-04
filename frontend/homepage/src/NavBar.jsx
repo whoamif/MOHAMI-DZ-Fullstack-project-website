@@ -64,13 +64,13 @@ function NavBar() {
   };
 
   return (
-    <div className="flex justify-between w-full h-20 fixed quicksand p-10 shadow-md items-center relative ">
+    <div className="flex justify-between w-full h-20 fixed quicksand p-10 shadow-md items-center relative z-80 ">
       <div>
         <Link to={"/"} href="" >
           <img src={logo} alt="im" />
         </Link>
       </div>
-      <div className="flex z-40 gap-7 mr-72 w-max ">
+      <div className="flex z-20 gap-7 mr-72 w-max ">
         <div
           className="relative"
           onMouseEnter={toggleAnnuaireDropdown}
@@ -400,7 +400,7 @@ function NavBar() {
         <a className="text-black hover:text-orange-500" href="">
           {t("Home")}
         </a>
-        <a className="text-black hover:text-orange-500 cursor-pointer" href="mailto:admin" >
+        <a className="text-black hover:text-orange-500 cursor-pointer" href="mailto:dz.mohami.lawyer@gmail.com" >
           {t("Contact US")}
         </a>
       </div>

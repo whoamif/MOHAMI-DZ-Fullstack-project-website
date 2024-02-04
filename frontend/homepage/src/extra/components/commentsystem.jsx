@@ -66,7 +66,7 @@ const CommentSystem = () => {
             rows={3}
           ></textarea>
           <button type="submit" className="border-1 border-orange-500 text-black p-2 rounded mt-2">
-            Save
+            Sauvgarder
           </button>
         </form>
       )}

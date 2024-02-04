@@ -19,7 +19,6 @@
     "@mui/material": "^5.3.0",
     "axios": "^1.6.7",
     "babel-plugin-macros": "^3.1.0",
-    "emailjs-com": "^3.2.0",
     "i18next": "^23.8.2",
     "react": "^18.2.0",
     "react-card-slider-component": "^1.0.9",
