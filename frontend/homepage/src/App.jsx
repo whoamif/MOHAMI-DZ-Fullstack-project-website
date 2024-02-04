@@ -1,145 +1,243 @@
-import './App.css'
-import NavBar from './NavBar'
-import Footer from './Footer'
-import LawyerSlides from './LawyerSlides';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass , faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import "./App.css";
+import { useContext, useState } from "react";
+import i18n from "../i18n";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
+import LawyerSlides from "./LawyerSlides";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMagnifyingGlass,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
+import { searchContext } from "./RoutesApp";
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
-function App() {
+const App = () => {
+  const cities = [
+    "Adrar",
+    "Chlef",
+    "Laghouat",
+    "Oum El Bouaghi",
+    "Batna",
+    "Béjaïa",
+    "Biskra",
+    "Béchar",
+    "Blida",
+    "Bouïra",
+    "Tamanrasset",
+    "Tébessa",
+    "Tlemcen",
+    "Tiaret",
+    "Tizi Ouzou",
+    "Alger",
+    "Djelfa",
+    "Jijel",
+    "Sétif",
+    "Saïda",
+    "Skikda",
+    "Sidi Bel Abbès",
+    "Annaba",
+    "Guelma",
+    "Constantine",
+    "Médéa",
+    "Mostaganem",
+    "M'Sila",
+    "Mascara",
+    "Ouargla",
+    "Oran",
+    "El Bayadh",
+    "Illizi",
+    "Bordj Bou Arréridj",
+    "Boumerdès",
+    "El Tarf",
+    "Tindouf",
+    "Tissemsilt",
+    "El Oued",
+    "Khenchela",
+    "Souk Ahras",
+    "Tipaza",
+    "Mila",
+    "Aïn Defla",
+    "Naâma",
+    "Aïn Témouchent",
+    "Ghardaïa",
+    "Relizane",
+    "Timimoun",
+    "Bordj Badji Mokhtar",
+    "Ouled Djellal",
+    "Béni Abbès",
+    "Ain Salah",
+    "Ain Guezzam",
+    "Touggourt",
+    "Djanet",
+    "El M'Ghair",
+    "El Menia",
+  ];
+
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  let data1 = [];
+  let data2 = [];
+  let data3 = [];
+  const { setSearchResults, searchResults } = useContext(searchContext);
+
+  const handleNameSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/search/?search=${encodeURIComponent(name)}`
+      );
+      data1 = response.data;
+      console.log(data1);
+
+      return data1;
+    } catch (error) {
+      console.error("Error searching by name:", error);
+      throw error;
+    }
+  };
+
+  const handleCitySearch = async (city) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/searchAdr/?search=${encodeURIComponent(
+          city
+        )}`
+      );
+      
+      data2 = response.data;
+      console.log(data2);
+      return data2;
+    } catch (error) {
+      console.error("Error searching by city:", error);
+      throw error;
+    }
+  };
+
+  const handleInter = async () => {
+    try {
+      await handleNameSearch();
+      await handleCitySearch(city);
+
+      data3 = data1.filter((item1) =>
+        data2.some((item2) => item1.lawyer_id === item2.lawyer_id)
+      );
+      console.log(data3);
+      setSearchResults(data3);
+      navigate("/searchpage");
+    } catch (error) {
+      console.error("Error during intersection:", error);
+    }
+  };
+
+  function chunkArray(array, size) {
+    const chunkedArr = [];
+    let index = 0;
+    while (index < array.length) {
+      chunkedArr.push(array.slice(index, size + index));
+      index += size;
+    }
+    return chunkedArr;
+  }
+
+  const cityInputRef = useRef(null);
 
   return (
-    <>
-      <div className='flex flex-col w-screen min-h-screen  '>
-        
-        <NavBar></NavBar>
-
-        <div className='bg-cover bg-center w-screen min-h-96 ' style={{ backgroundImage: `url('./elements/bgimg.svg')`, height: '100%'}}>
-          <div className='text-black w-2/5	mt-20 ml-16 flex flex-col gap-5'>
-          <p className=' text-3xl	'>Navigating Legal Excellence in Algeria</p>
-          
-          <p
-          className='text-2xl font-thin'>
-            Your Trusted Advocates for Justice and Expertise
-                
-              </p>
-          
-          
+    <div className="flex flex-col w-screen min-h-screen">
+      <NavBar />
+      <div></div>
+      <div
+        className="bg-cover bg-center w-screen min-h-96 z-10"
+        style={{
+          backgroundImage: `url('./elements/bgimg.svg')`,
+          height: "100%",
+        }}
+      >
+        <div className="text-black w-2/5 mt-20 ml-16 flex flex-col gap-5">
+          <p className="text-3xl">{t("legalExcellence")}</p>
+          <p className="text-2xl font-thin">{t("trustedAdvocates")}</p>
+        </div>
+        <div className="flex gap-2 place-items-baseline ml-10 mt-20">
+          <div className="rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg">
+            <FontAwesomeIcon
+              className="text-orange-500"
+              icon={faMagnifyingGlass}
+            />
+            <input
+              className="ml-2 w-80 h-full bg-transparent outline-none"
+              type="text"
+              placeholder={t("searchForLawyer")}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
-          <div className='flex gap-2 place-items-baseline ml-10 mt-20'>
-      <div className='rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg' >
-      <FontAwesomeIcon className='text-orange-500' icon={faMagnifyingGlass} />
-      <input
-        className='ml-2 w-80 h-full bg-transparent outline-none'
-        type="text"
-        placeholder='Search for your lawyer'
-      />
+          <div className="rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg">
+            <FontAwesomeIcon className="text-orange-500" icon={faLocationDot} />
+            <input
+              ref={cityInputRef}
+              className="ml-2 w-80 h-full bg-transparent outline-none"
+              type="text"
+              placeholder={t("searchForLocation")}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+          <button
+            className="rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 w-32 place-items-center"
+            onClick={() => {
+              handleInter();
+            }}
+            onKeyDown={() => {
+              handleInter();
+            }}
+          >
+            {t("search")}
+          </button>
+        </div>
       </div>
-     
-      
 
-      <div className='rounded-l-lg bg-white w-96 h-10 flex pl-2 items-center shadow-md hover:shadow-lg'>
-        <FontAwesomeIcon className='text-orange-500' icon={faLocationDot} />
-        <input
-          className='ml-2 w-80 h-full bg-transparent outline-none'
-          type="text"
-          placeholder='Search for location'
-        />
+      <div className="w-screen min-h-96 mt-32 flex flex-col gap-20 ">
+        <p className="text-4xl text-black drop-shadow-2xl">
+          {t("preferredAvocat")}
+        </p>
+        <div className="flex justify-center items-center w-4/5 m-auto">
+          <LawyerSlides />
+        </div>
+        <p className="ml-70 font-bold text-black text-3xl text-left pl-16">
+          {t("searchByCity")}
+        </p>
+        <div className="flex place-self-start p-10 m-auto">
+          {chunkArray(cities, 10).map((group, groupIndex) => (
+            <div
+              key={groupIndex}
+              className="flex flex-col text-black text-xl p-4 place-self-start text-left gap-2"
+            >
+              {group.map((city, index) => (
+                <div
+                  key={index}
+                  className="text-black hover:underline hover:text-black font-thin cursor-pointer"
+                  onClick={async () => {
+                    setCity(city); // Set the city in the state
+                    cityInputRef.current.focus(); // Focus on the city input field
+                    document.documentElement.scrollIntoView({ behavior: "smooth" });
+
+                  }}
+                >
+                  {index + 1 + groupIndex * 10}. {t(city)}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
-      <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 h-10 place-items-center'>
-        Search
-      </button>
+      <Footer />
     </div>
-        </div>
-        <div className='w-screen min-h-96 mt-32 flex flex-col gap-20 '>
-        <p className='text-4xl text-black drop-shadow-2xl'> See our must preferred Avocat </p>
-        <div className='flex justify-center items-center w-4/5  m-auto'>
-  <LawyerSlides />
-</div>
-<p className='ml-70 font-bold text-black text-3xl text-left pl-16'>Search directly by city : </p>
-<div className=' flex place-self-start p-10'>
-  
-<div className='flex flex-col text-black text-xl p-4 place-self-start text-left gap-2'>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 1. Adrar</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 2. Chlef</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 3. Laghouat</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 4. Oum El Bouaghi</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 5. Batna</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 6. Béjaïa</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 7. Biskra</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 8. Béchar</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 9. Blida</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 10. Bouïra</a>
-  </div>
-  <div className='flex flex-col text-black text-xl p-4 place-self-start text-left gap-2'>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 11. Tamanrasset</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 12. Tébessa</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 13. Tlemcen</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 14. Tiaret</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 15. Tizi Ouzou</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 16. Algiers</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 17. Djelfa</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 18. Jijel</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 19. Sétif</a>
-    <a className='text-black hover:underline hover:text-black font-thin' href=""> 20. Saïda</a>
-  </div>
-  <div className='flex flex-col text-black text-xl p-4 place-self-start text-left gap-2'>
-  <a  className='text-black hover:underline hover:text-black font-thin'href=""> 21	.Skikda</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 22	.Sidi Bel Abbès</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 23.	Annaba</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 24	.Guelma</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 25	.Constantine</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 26	.Médéa</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 27	.Mostaganem</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 28	.M'Sila</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 29	.Mascara</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href="">30	.Ouargla</a>
-  </div>
-  <div className='flex flex-col text-black text-xl p-4 place-self-start text-left gap-2'>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 31	.Oran</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 32	.El Bayadh</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 33	.Illizi</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 34	Bordj Bou Arréridj</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 34	Bordj Bou Arréridj</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 35	Boumerdès</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 36	El Tarf</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 37	Tindouf</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 38	Tissemsilt</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 39	El Oued</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href="">40	Khenchela</a>
-  </div>
-  <div className='flex flex-col text-black text-xl p-4 place-self-start text-left gap-2'>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 41	Souk Ahras</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 42	Tipaza</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 43	Mila</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 44	Aïn Defla</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 45	Naâma</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 46	Aïn Témouchent</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 47	Ghardaïa</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 48	Relizane</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 49	Timimoun</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href="">50	Bordj Badji Mokhtar</a>
-  </div>
-  <div className='flex flex-col text-black text-xl p-4 place-self-start  text-left gap-2'>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 51	Ouled Djellal	</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 52	Béni Abbès</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 53	Ain Salah</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 54	Ain Guezzam</a>
-  <a className='text-black hover:underline hover:text-black font-thin'href=""> 55	Touggourt</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 56	Djanet</a>
-  <a className='text-black hover:underline hover:text-black font-thin' href=""> 57	El M'Ghair</a>
-  <a  className='text-black hover:underline hover:text-black font-thin'href=""> 58	El Menia</a>
-  </div>
-  
-</div>
-            
-        </div>
-         
-       
-        <Footer ></Footer>
-       </div>
-    </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

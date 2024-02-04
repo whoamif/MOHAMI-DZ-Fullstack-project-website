@@ -1,66 +1,67 @@
 import React from 'react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import "./App.css";
+import { Navigation} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/navigation';
+import { Link } from 'react-router-dom';
 
 function LawyerSlides() {
+  const handleNameSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/search/?search=${encodeURIComponent(name)}`
+      );
+      data1 = response.data;
+      console.log(data1);
+
+      return data1;
+    } catch (error) {
+      console.error("Error searching by name:", error);
+      throw error; 
+    }
+  };
   return (
     <Swiper
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      modules={[Navigation]}
       spaceBetween={50}
       slidesPerView={3}
       navigation
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
-      className='mb-16 p-10 place-items-center flex'
-      autoplay={{ delay: 3000 }}
+      
+      className='m-auto w-5/6 flex '
+     
     >
-      <FontAwesomeIcon className='text-orange-500 cursor-pointer hover:shadow-2xl' icon={faChevronLeft} />
       <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
+        <div className='border-2  p-4 flex flex-col gap-4 hover:shadow-2xl'>
+          <img className=' ' src="./elements/mohami.png" alt="" />
+          <p className='text-black font-bold'>BENBATTOUCHE FOUAD TAREK</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
+          <Link to={'/avocat/172'}>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44' href="">see the profile</button>
+          </Link>        </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
+        <div className='border-2 p-4 flex flex-col gap-4 hover:shadow-2xl'>
+          <img className=' ' src="./elements/mohami2.jpg" alt="" />
+          <p className='text-black font-bold'>ME SAMIR SAYAH</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
+          <Link to={'/avocat/494'}>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44'>see the profile</button>
+          </Link>
         </div>
+        
       </SwiperSlide>
       <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
+        <div className='border-2 p-4 flex flex-col gap-4 hover:shadow-2xl'>
+          <img className=' ' src="./elements/mohami3.jpeg" alt="" />
+          <p className='text-black font-bold'>MAÎTRE KOUCEILA ZERGUINE</p>
+          <p className='text-black font-thin'>Droit administratif, Droit bancaire, Droit civil, Droit commercial...</p>
+          <Link to={'/avocat/375'}>
+          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0 w-44'>see the profile</button>
+          </Link>        </div>
       </SwiperSlide>
-      <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='border-2 w-60 h-50 p-4 flex flex-col gap-4 hover:shadow-2xl'>
-          <img className=' ' src="./elements/bgimg.svg" alt="" />
-          <p className='text-black font-bold'>ADJISSI FATIMA AMINA</p>
-          <p className='text-black font-thin'>computer science student and game developer ...</p>
-          <button className='rounded-sm bg-orange-500 text-white hover:bg-orange-200 hover:border-0'>see the profile</button>
-        </div>
-      </SwiperSlide>
-      <FontAwesomeIcon className='text-orange-500 cursor-pointer hover:shadow-2xl' icon={faChevronRight} />
+      
+      
     </Swiper>
   );
 }
