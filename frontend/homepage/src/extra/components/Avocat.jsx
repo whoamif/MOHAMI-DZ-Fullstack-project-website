@@ -10,7 +10,7 @@ import { Link, useParams } from "react-router-dom";
 import { searchContext } from "../../RoutesApp";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
+//still some changes here , like linking the comments syst and ratings ones , and verified the athent of the user , i will fix it soon 
 const Avocat = ({ lawyers }) => {
   const { id } = useParams();
   const [showForm, setShowForm] = useState(false);
