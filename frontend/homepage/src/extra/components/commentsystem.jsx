@@ -4,8 +4,7 @@ import './index';
 const CommentSystem = () => {
   
   const [comments, setComments] = useState([
-    { id: 1, text: '"Je recommande vivement cet avocat', user: 'a' },
-    { id: 2, text: 'Mon avocat a été extrêmement compétent et professionnel. Il a résolu mon affaire rapidement et a toujours été disponible pour répondre à mes questions', user: 'b' },
+    
   ]);
 
  

@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './Footer';
 import pic from "../elements/bgright.svg";
 import { Link } from 'react-router-dom';
-import { useTranslation } from "react-i18next"; // Ensure this import is at the top level
+import { useTranslation } from "react-i18next"; 
 
 function Signup() {
   const { t } = useTranslation(); 
