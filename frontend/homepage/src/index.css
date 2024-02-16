@@ -1,7 +1,7 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@100&family=Quicksand:wght@300&display=swap');
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@100&family=Quicksand:wght@300&display=swap");
 
 .swiper-button-prev {
   font-family: swiper-icons;
@@ -10,18 +10,20 @@
   text-transform: none !important;
   letter-spacing: 0;
   font-variant: initial;
-  padding-top:4px;
+  padding-top: 4px;
   line-height: 1;
 }
-.swiper-button-next{
+.swiper-button-next {
   font-family: swiper-icons;
-  padding-top:4px;
+  padding-top: 4px;
   left: 10%;
   text-transform: none !important;
   letter-spacing: 0;
   font-variant: initial;
   line-height: 1;
   color: orange;
-
 }
 
+[lang="ar"] {
+  direction: rtl;
+}

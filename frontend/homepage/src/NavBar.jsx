@@ -38,7 +38,7 @@ function NavBar() {
       setToken(storedToken);
     }
   }, []);
-  const emailAddress = 'adjissifatimaamina@gmail.com';
+  const emailAddress = "adjissifatimaamina@gmail.com";
 
   const [spec, setSpec] = useState("");
   let data1 = [];
@@ -66,18 +66,19 @@ function NavBar() {
   return (
     <div className="flex justify-between w-full h-20 fixed quicksand p-10 shadow-md items-center relative z-80 ">
       <div>
-        <Link to={"/"} href="" >
+        <Link to={"/"} href="">
           <img src={logo} alt="im" />
         </Link>
       </div>
       <div className="flex z-20 gap-7 mr-72 w-max ">
         <div
-          className="relative"
           onMouseEnter={toggleAnnuaireDropdown}
           onMouseLeave={toggleAnnuaireDropdown}
+          className="relative"
         >
-          <a className="text-black hover:text-orange-500 cursor-pointer">            {t("annu")}
-</a>
+          <a className="text-black hover:text-orange-500 cursor-pointer">
+            {t("annu")}
+          </a>
           {isAnnuaireDropdownVisible && (
             <div className="flex absolute top-full left-0 mt-1  z-10">
               <div className="flex flex-col  rounded-b-lg bg-gray-200 text-left p-2 gap-2">
@@ -397,10 +398,13 @@ function NavBar() {
         >
           {t("Carte Judiciaire")}
         </Link>
-        <a className="text-black hover:text-orange-500" href="">
+        <Link to={"/"} className="text-black hover:text-orange-500" href="">
           {t("Home")}
-        </a>
-        <a className="text-black hover:text-orange-500 cursor-pointer" href="mailto:dz.mohami.lawyer@gmail.com" >
+        </Link>
+        <a
+          className="text-black hover:text-orange-500 cursor-pointer"
+          href="mailto:dz.mohami.lawyer@gmail.com"
+        >
           {t("Contact US")}
         </a>
       </div>

@@ -11,9 +11,17 @@ import Singuplawyer from "./singuplawyer/src/Singuplawyer.jsx";
 import { useState, createContext, useEffect } from "react";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n.js";
 
 export const searchContext = createContext();
 const RoutesApp = () => {
+  const { t } = useTranslation();
+  const languageCode = i18n.language;
+  useEffect(() => {
+    document.documentElement.lang = languageCode;
+    console.log(languageCode)
+  }, [languageCode]);
   const [lawyers, setLawyers] = useState();
   useEffect(() => {
     let data1 = [];
@@ -40,11 +48,15 @@ const RoutesApp = () => {
   return (
     <searchContext.Provider
       value={{ searchResults, setSearchResults, setLawyers, lawyers }}
-    >          <Toaster position="top-right" />
-
+    >
+      {" "}
+      <Toaster position="top-right" />
       <BrowserRouter>
         <Routes>
-          <Route path={"/avocat/:id"} element={<Avocat lawyers={lawyers} />}></Route>
+          <Route
+            path={"/avocat/:id"}
+            element={<Avocat lawyers={lawyers} />}
+          ></Route>
           <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
