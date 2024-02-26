@@ -88,11 +88,20 @@ from .models import Rendezvous
 from .serializers import RendezvousSerializer
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
-class RendezvousCreateView(APIView):
+@api_view('POST')
+def RendezvousCreateView(request):
+    if request.method== "POST":
+        saveserialialize= RendezvousSerializer(data=request.data)
+        if saveserialialize.is_valid():
+            saveserialialize.save()
+            return Response(saveserialialize.data, status=status.HTTP_201_CREATED)
+            return Response(saveserialialize.data, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+"""
     queryset = Rendezvous.objects.all()
     serializer_class = RendezvousSerializer
 
@@ -107,6 +116,7 @@ class RendezvousCreateView(APIView):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+"""
 
 
 
@@ -122,22 +132,7 @@ class RendezvousCreateView(APIView):
 
 
 
-
-"""class LawyerSearchView(generics.ListAPIView):
-    serializer_class = LawyersSerializer
-
-    def get_queryset(self):
-        name = self.request.query_params.get('name', '')
-        print(f"Search Name: {name}")
-
-        with connection.cursor() as cursor:
-            cursor.execute('SELECT lawyer_id, lawyername, email, password, adr, profile_pic, Phn_number, domains, price, license_num, schedule, edu_bg, Year_exp FROM Lawyers WHERE lawyername = %s', [name])
-
-        queries = connection.queries
-        for query in queries:
-            print(query['sql'])
-
-        return Lawyers.objects.filter(lawyername__icontains=name)"""    
+   
     
 
 

@@ -12,7 +12,7 @@ urlpatterns = [
     path('search/',views.LawyerSearchView.as_view()),
     path('searchAdr/',views.LawyerSearchViewAdr.as_view()),
     path('searchDomains/',views.LawyerSearchViewDomain.as_view()),
-    path('api/rendezvous/create/', RendezvousCreateView.as_view(), name='create_rendezvous'),
+    path('rendezvous/', views.RendezvousCreateView, name='create_rendezvous'),
 
 
 ]
