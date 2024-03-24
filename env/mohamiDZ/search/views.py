@@ -7,7 +7,7 @@ from rest_framework import status
 
 from rest_framework import generics
 from .models import Lawyers,Rendezvous
-from .serializers import LawyersSerializer 
+from .serializers import LawyersSerializer ,RendezvousSerializer
 from django.db import connection 
 from rest_framework import filters
 
@@ -16,8 +16,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 from rest_framework.parsers import JSONParser
-from .models import Rendezvous
-from .serializers import RendezvousSerializer
 
 
 class LawyerSearchView(generics.ListAPIView):
@@ -83,11 +81,6 @@ class LawyerSearchViewDomain(generics.ListCreateAPIView):
 
 
 # views.py
-from rest_framework import generics
-from .models import Rendezvous
-from .serializers import RendezvousSerializer
-from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.decorators import api_view
 
 @api_view('POST')
