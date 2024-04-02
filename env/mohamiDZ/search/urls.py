@@ -2,7 +2,7 @@
 
 from django.urls import path
 from . import views
-from .views import LawyerSearchView,LawyerSearchViewAdr, RendezvousCreateView
+from .views import LawyerSearchView,LawyerSearchViewAdr, RendezVous
 
 urlpatterns = [
     #path('yourapp/', views.your_app_view, name='your_app_view'),
@@ -12,7 +12,7 @@ urlpatterns = [
     path('search/',views.LawyerSearchView.as_view()),
     path('searchAdr/',views.LawyerSearchViewAdr.as_view()),
     path('searchDomains/',views.LawyerSearchViewDomain.as_view()),
-    path('rendezvous/', views.RendezvousCreateView, name='create_rendezvous'),
+    path('rendezvous/', views.RendezVous.as_view()),
 
 
 ]
